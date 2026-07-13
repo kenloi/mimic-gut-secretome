@@ -1,4 +1,4 @@
-rank	peptide_family	best_receptor	mature_iptm	iface_pae	decoy_z	tier	metaP	metaT	locus_context	interest_class	stage1_tier	stage1_iptm	pep_len	occlusion	occ_frac	accessibility
+rank	peptide_family	best_receptor	mature_iptm	iface_pae	decoy_z	tier	metaP	metaT	locus_context	interest_class	stage1_tier	stage1_iptm	precursor_len	occlusion	occ_frac	accessibility
 1	078_038_456	IL7R	0.911	7.41	5.986773654721314	A	0.6438356164383562	4	orphan (no cognate)	orphan + hit + expressed			74	ligand-competitive: docks at cytokine site (accessible on free receptor; would compete)	0.6	PASS (accessible)
 2	283_075_895	IL7R	0.814	11.86	4.941714242294802	A	0.2162162162162162	28	orphan (no cognate)	orphan + hit + expressed	B_moderate	0.647	74	novel-epitope: docks away from cytokine site (accessible; allosteric/novel)	0.0	PASS (accessible)
 3	269_289_576	TNFRSF1B	0.796	13.41	6.575822388678365	A	0.1851851851851852	9	orphan (no cognate)	orphan + hit + expressed			90	novel-epitope: docks away from cytokine site (accessible; allosteric/novel)	0.0	PASS (accessible)

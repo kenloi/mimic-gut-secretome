@@ -15,9 +15,15 @@
 
 The human gut encodes a hundred times more microbial genes than human genes — the body's largest reservoir of coding potential. We have spent a decade reading its output as *chemistry*: short-chain fatty acids, bile acids, tryptophan metabolites, each mapped to a human receptor. Whether commensals also signal in *protein* — secreted miniproteins that engage our receptors directly — is essentially unknown. We built a structure-first screen to ask, co-folding ~2,000 gut-secreted miniprotein families against a panel of human immune receptors and sequence-matched decoys, scoring each interface against a null.
 
-Here we report **MIMIC**, a **M**obile **I**mmuno**M**odulatory **I**CE-borne **C**ommensal peptide. Two features distinguish it. First, it folds a confident interface on **IL7R** and lands on the exact surface where interleukin-7 binds (65% overlap), with no sequence homology to IL-7 — a structural mimic, not a captured gene. Second, it is not fixed to one genome: MIMIC rides a conjugative element traded across four bacterial families in two phyla, including the pathogen *Clostridioides difficile* (enrichment p = 0.003).
+Here we report **MIMIC**, a **M**obile **I**mmuno**M**odulatory **I**CE-borne **C**ommensal peptide. Two features distinguish it. First, it folds a confident interface on **IL7R** and lands on the exact surface where interleukin-7 binds (65% overlap), with no sequence homology to IL-7 — a structural mimic, not a captured gene. Second, it is not fixed to one genome: MIMIC rides a conjugative element and its family spans 239 gut-bacterial species, including 15 strains of the pathogen *Clostridioides difficile* — the neighborhood is mobile-element-enriched at p = 0.003 (2nd of 592 families).
 
-One peptide is a lead. The finding behind it is larger. The microbiome may be a mobile library of human-receptor ligands — disease-linked, tradeable between species, and almost entirely uncharted. This is an axis of microbe–host communication we have barely begun to read.
+The ligand-competitive geometry suggests an **IL-7 antagonist** — an immune-shielding
+peptide that quiets lymphocyte signaling to keep its microbe invisible. We propose this as a
+hypothesis: co-folding gives geometry, not direction, so whether MIMIC blocks or mimics IL-7
+is unresolved until a pSTAT5 competition assay decides it. One peptide is a lead; the finding
+behind it is larger. The microbiome may be a mobile library of human-receptor ligands —
+disease-linked, tradeable between species, and almost entirely uncharted. This is an axis of
+microbe–host communication we have barely begun to read.
 
 ---
 
@@ -83,6 +89,14 @@ signal peptide **collapsed 4 of 5 Tier-A hits** — the old hero's TLR2 interfac
 iPTM 0.91 to 0.40, an almost entirely signal-peptide artifact. Only one legacy hit
 (277_230_793 × IL7R) survived maturation.
 
+*Why 297 of 2,187?* The mature re-fold was run on the families that reached the structural
+shortlist in the first pass (Tier-A/B by precursor interface plus their close neighbors),
+not on all 2,187 — a compute-bounded choice under the deadline. This is an honest limitation
+of the re-screen: a family that would only score as a *mature* form, and scored poorly as a
+precursor, is invisible to it. So the maturation correction is a rigorous re-ranking of the
+shortlist, not an unbiased re-screen of the full set. Folding all 2,187 mature forms is the
+clean version of this experiment and is the obvious next run.
+
 **Error 2 — expression evidence was unused.** Ranking used structure only. We added
 metaproteomic (metaP) and metatranscriptomic (metaT) detection as an axis; a family is
 "expressed" when metaP > 0 (protein-level detection). The old hero has metaP = 0.00; the
@@ -135,7 +149,17 @@ hit + expressed class:
 | 7 | 135_351_865 | ITGA4 | 0.75 | 20.9 | 7.0 | 0.25 | orphan | ligand-competitive | FAIL |
 | 8 | 246_552_641 | TLR2 | 0.67 | 18.6 | 15.4 | 0.26 | orphan | partial | untestable |
 
-*Full table: [`results/reranked_candidate_table.tsv`](results/reranked_candidate_table.tsv) (59 pairs, all axes) and `reranked_candidates_full.tsv` (all 297).* The pattern is striking: the strongest orphan-expressed hits cluster on IL7R and related cytokine receptors, and the single best candidate on every corrected axis is **078_038_456 × IL7R**.
+*Full table: [`results/reranked_candidate_table.tsv`](results/reranked_candidate_table.tsv) (59 pairs, all axes) and [`results/reranked_candidates_full.tsv`](results/reranked_candidates_full.tsv) (all 297).* The single best candidate on every corrected axis is **078_038_456 × IL7R**.
+
+**Two things about the IL7R column, stated plainly.** The top three IL7R rows
+(078_038_456, 078_038_499, 083_643_341) are **one family** — 89–96% pairwise identity —
+recovered independently from different genomes. That is not three discoveries; it is the
+MIMIC family found three times, which is a *reproducibility* signal, not an enrichment one.
+But the *other* IL7R hits (283_075_895, 268_961_644, 098_551_287, 124_338_945) share only
+7–14% identity with the MIMIC family and with each other — these are **unrelated peptides
+that independently converge on IL7R**. So the IL7R signal is real on two counts: one family
+recovered reproducibly, and several sequence-unrelated peptides landing on the same
+receptor. We do not claim more than that.
 
 ### A structural mimic, not a sequence mimic
 For each top candidate we ran local Smith–Waterman alignment (BLOSUM62) against the
@@ -154,6 +178,37 @@ The lead docks the cytokine-binding face of IL7R. Superposed on the IL-7·IL7R c
 
 ![Peptide overlays the native IL-7 site on IL7R](figures/struct_078_vs_il7.png)
 
+## Why IL-7 is the receptor that makes this interesting
+
+The receptor MIMIC docks is not incidental — IL-7 signaling is one of the most
+consequential axes in mucosal immunity, and its biology is what makes a microbial
+antagonist a compelling hypothesis rather than a curiosity.
+
+**IL-7 is the survival signal for T cells.** IL-7 binds IL-7Rα (CD127), which then recruits
+the common gamma chain (γc / IL2RG) to assemble a signaling heterodimer → JAK1/JAK3 →
+STAT5 → the anti-apoptotic program (Bcl-2, Mcl-1) plus PI3K/AKT. It is the non-redundant
+homeostatic cytokine that keeps naive and memory T cells alive and maintains the peripheral
+T-cell pool. Humans without functional IL-7Rα develop **T⁻B⁺NK⁺ severe combined
+immunodeficiency (SCID)** — no T cells at all. The interface MIMIC lands on is precisely the
+IL-7-binding face where those SCID variants cluster.
+
+**It is a mucosal receptor, expressed exactly where a gut microbe would meet it.** IL-7Rα is
+lymphoid, not myeloid: naive/memory T cells, thymocytes, and — critically here — **gut
+intraepithelial lymphocytes, lamina propria T cells, and ILC3s** that maintain the
+intestinal barrier. A secreted commensal peptide and an IL-7-responsive T cell are
+plausibly in the same tissue compartment. (Regulatory T cells are CD127-low, so blockade
+would fall selectively on conventional effector/memory T cells — sparing the suppressive
+compartment, which sharpens rather than blunts the immune-shielding logic.)
+
+**One protein, everywhere — so this is an access question, not a targeting one.** There is a
+single human IL-7Rα, identical in every tissue. A gut peptide reaching it is limited by
+*access*, not by finding the right receptor. Access is most plausible **locally, in a
+barrier-compromised gut** — inflamed, antibiotic-perturbed, or during *C. difficile*
+colonization — not as a systemic blocker from a healthy lumen. The defensible claim is a
+**local, context-dependent modulator**, not a circulating drug. Two open unknowns bound it:
+the local effective concentration against picomolar IL-7, and proteolytic survival in the
+protease-dense gut (whether MIMIC carries structure-stabilizing features is untested).
+
 ## MIMIC is horizontally mobile
 
 The peptide's genomic neighborhood is not metabolic — it is a mobile genetic element. Across five recovered genomes, four carry the peptide inside conserved conjugation machinery: a MobT relaxase, a Tcp-family conjugation ATPase, ArdA antirestriction, and a tyrosine recombinase/integrase — the signature of an Integrative and Conjugative Element (ICE). Against a genome-wide null of 592 gut smORF families, MIMIC's neighborhood is the 2nd-most mobile-element-associated (31% vs 2% background; permutation **p = 0.003**). No cognate bacterial receptor is conserved in the neighborhood — the peptide is an orphan signal.
@@ -162,16 +217,33 @@ The peptide's genomic neighborhood is not metabolic — it is a mobile genetic e
 
 The homologs span four families in two phyla — *Clostridioides difficile*, *Vescimonas fastidiosa*, *Anaerostipes hadrus* (Bacillota), and *Bifidobacterium breve* (Actinomycetota). A ~94%-identical peptide shared between Clostridia and Bifidobacterium is not vertical inheritance; it is the signature of recent horizontal transfer.
 
-![Near-identical across 4 families in 2 phyla](figures/msa_078_family.png)
+![Near-identical across gut commensals and 3 C. difficile strains, cross-phylum](figures/msa_078_family_expanded.png)
+
+*Alignment of the MIMIC family across 7 representatives — including three independent* C. difficile *strains and cross-phylum* Bifidobacterium breve*: 96% mean conservation, 68 of 74 columns ≥85% identical. The signal peptide (positions 1–29) and the mature secreted 45-mer are both near-invariant.*
+
+**The family is broad, not a local duplication.** A sensitive MMseqs search of UniProtKB
+(3 iterations) recovers **557 homologs across 239 species and 80 genera** — median 78%
+identity, with a diverged tail to 27%, so the family is both conserved and deep. **41% of
+those homologs are independently annotated as conjugal-transfer / mobility proteins** — a
+second, annotation-based line of evidence for the mobile-element context, orthogonal to the
+synteny above. The taxonomy is Lachnospiraceae-centered (*Blautia*, *Dorea*,
+*Mediterraneibacter*, *Coprococcus*), and — the pathogen-conduit point — includes **15
+independent *Clostridioides difficile* strains**, plus *Enterococcus* and *Streptococcus*.
+The *C. difficile* signal is not one genome; it is fifteen. (Full hit table:
+[`results/mmseqs_breadth_078.tsv`](results/mmseqs_breadth_078.tsv).)
 
 ## The hypothesis: an immune-shielding peptide
 
-We propose MIMIC is an **anti-inflammatory / immune-shielding** peptide. Its geometry is
-ligand-competitive — it occupies the IL-7 binding site — which predicts an **IL-7
-antagonist**: by blunting IL-7-driven lymphocyte survival and expansion, it would dampen
-the host's ability to mount a sustained response against the microbe that displays it. IL-7
-is not a pro-inflammatory cytokine; it is a lymphocyte homeostasis signal, so *lowering* it
-is a plausible route to immune invisibility, not to inflammation.
+We propose — as a hypothesis, not a finding — that MIMIC is an **anti-inflammatory /
+immune-shielding** peptide. Its geometry is ligand-competitive (it occupies the IL-7 binding
+site), which is *consistent with* an **IL-7 antagonist**: by blunting IL-7-driven lymphocyte
+survival and expansion, it would dampen the host's ability to mount a sustained response
+against the microbe that displays it. IL-7 is not a pro-inflammatory cytokine; it is a
+lymphocyte homeostasis signal, so *lowering* it is a plausible route to immune invisibility,
+not to inflammation. **Direction is the open question.** Co-folding cannot distinguish an
+antagonist (blocks IL-7) from an agonist (mimics it); the geometry and the IL-7 biology make
+the antagonist/shield reading the more coherent one, but it is not established. Assay 2,
+Arm B (below) is built to settle it.
 
 This reframes the conservation pattern. The same cassette in benign commensals *and* in
 *C. difficile* is not a coincidence — the selected trait is **immune shielding**, useful to
@@ -239,15 +311,40 @@ cells — the proximal, quantitative IL-7 signal.
 Full protocol: [`assay_design.md`](assay_design.md). Both stages are ~a week of bench work
 with off-the-shelf reagents.
 
-## What this is, and is not
+## The evidence ledger — what this supports, and what it cannot say
 
-MIMIC is a structurally-supported, disease-anchored, mobile hypothesis — not proof of
-binding, and not a demonstration of function. The immune-shielding / antagonist model is
-motivated by the ligand-competitive geometry (see
-[`results/agonist_vs_antagonist_078.tsv`](results/agonist_vs_antagonist_078.tsv)) but is
-**not** established by it; Assay 2, Arm B is what would settle it. The ClinVar co-location is
-descriptive, not an enrichment (the permutation test is null). MIMIC has no sequence
-homology to IL-7 — a structural, not sequence, mimic. We report all of this openly.
+This is an informatics result. Its value is in prioritizing a hypothesis worth wet-lab
+time, and honesty about the boundary is the point. Every claim, with the evidence for it
+and the experiment that would settle it:
+
+| Claim | What supports it | What it **can't** say yet | What settles it |
+|---|---|---|---|
+| MIMIC's predicted interface sits on the IL-7 site of IL7R | 65% contact-residue overlap; 96% of peptide backbone within 8 Å of the native IL-7 footprint; 0.6 Å receptor RMSD to crystal 3DI2 | that binding *occurs* — this is a model, not a measurement | BLI/SPR binding (Assay 1) |
+| It is a structural, not sequence, mimic | Smith–Waterman vs IL-7 and viral mimics all n.s. (z < 1.2 vs shuffled null) | nothing to soften — this one is a clean negative | already settled |
+| It is an antagonist / immune shield | ligand-competitive geometry; IL-7 biology makes blockade the coherent story | co-folding gives geometry, **not direction** — agonist is not excluded | pSTAT5 ±IL-7 (Assay 2, Arm B) |
+| It rides a mobile element | 4/5 loci in ICE synteny; 41% of 557 homologs annotated transfer-related; enrichment p = 0.003 (#2 of 592) | that the element is *currently* mobilizing between these species | conjugation assay / long-read MGE tracking |
+| It is a route into pathogens | 15 independent *C. difficile* homologs carry it | that transfer *to* the pathogen happened via this element specifically | strain-resolved phylogenetics of the element |
+| The epitope overlaps disease variants | SCID/IL7R variants cluster on the docked face | **not an enrichment** — IL7R ectodomain is 44% variant-annotated; permutation test is null (p = 0.115) | (descriptive only; not a claim) |
+| The engine is reliable for this interface | ESMFold2-Fast; receptor validated to 0.6 Å vs crystal | receptor RMSD validates the *receptor* (in training data), **not the peptide pose** | complex-native refold (AF3 / Boltz-2) — *in progress* |
+
+The through-line: **structure tells us where a peptide could bind and against what null,
+never what it does in a cell.** We have used it to nominate one specific, testable,
+disease-anchored hypothesis out of ~2,000 candidates — and to say exactly which experiment
+would confirm or kill it. That is what the method is for.
+
+### Known limitations (stated, not buried)
+- **Panel size.** 15 receptors (+10 decoys), below the 50–150 originally scoped. A prior
+  analysis found ~46% of peptides prefer some *off-panel* target — so "hits cluster on IL7R"
+  is partly a consequence of what we put in the panel. A genome-wide receptor screen is the
+  natural next step.
+- **γc-family specificity.** The decoys (EPOR, GHR) test whether MIMIC is a generic
+  cytokine-receptor sticker — they do **not** test whether it picks IL-7Rα out of its own γc
+  family (IL-2Rα/IL-4Rα/IL-15Rα/IL-21R/TSLPR). That paralog-specificity fold is running.
+- **Empirical FDR.** Hits are decoy-*receptor* calibrated (per-peptide z vs 10 decoys). The
+  shuffled-*peptide* null that would give a global empirical FDR is not yet run; z is a
+  thin-tail estimate from n = 10.
+- **Engine.** ESMFold2-Fast (single-sequence) was used for throughput; the lead is being
+  cross-folded in a complex-native engine (AF3) to validate the peptide pose.
 
 ---
 
@@ -264,6 +361,8 @@ src/       analysis scripts
 | File | What it is |
 |---|---|
 | `results/reranked_candidate_table.tsv` | Mature-form reranked candidates (iPTM, PAE, z, occlusion, expression) |
+| `results/reranked_candidates_full.tsv` | All 297 mature-refolded families (full screen) |
+| `results/mmseqs_breadth_078.tsv` | 557 MIMIC-family homologs across 239 species (breadth + taxonomy) |
 | `results/mge_enrichment_null.tsv` | Mobile-element enrichment vs 592-family permutation null (p = 0.003) |
 | `results/mge_context_078.tsv` | Per-locus ICE annotation across 5 genomes |
 | `results/clinvar_finding_078.tsv` | IL7R disease-variant co-location at the epitope |
