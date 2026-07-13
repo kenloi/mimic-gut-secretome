@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Cache-Control" content="no-cache">
-<title>MIMIC — mini-paper &amp; methods</title>
+<title>MIMIC — Paper &amp; methods</title>
 <style>
 :root{--coral:#D97757;--teal:#4A7B87;--ink:#1c2529;--muted:#6b7a80;--line:#e4e8ea;--bg:#faf9f7;--panel:#ffffff;}
 *{box-sizing:border-box}
@@ -22,16 +22,33 @@ a:hover{text-decoration:underline}
 .masthead strong{font-weight:660}
 .progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--coral);z-index:70;transition:width .1s linear}
 .layout{max-width:1280px;margin:0 auto;padding:0 40px 14vh;
-  display:grid;grid-template-columns:220px minmax(0,1fr) minmax(0,46%);gap:40px;align-items:start}
-/* TOC */
-.toc{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow:auto;font-size:12px;padding-right:6px}
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,52%);gap:52px;align-items:start}
+/* TOC — hover-reveal fixed overlay (hidden by default, no layout space) */
+.nav-trigger{position:fixed;top:0;left:0;width:14px;height:100vh;z-index:45}
+.nav-toggle{position:fixed;top:12px;left:12px;z-index:48;width:38px;height:38px;border-radius:9px;
+  border:1px solid var(--line);background:rgba(255,255,255,.94);color:var(--ink);font-size:18px;line-height:1;
+  cursor:pointer;box-shadow:0 1px 6px rgba(0,0,0,.12);display:none;align-items:center;justify-content:center}
+.nav-toggle:hover{background:#fff}
+.toc{position:fixed;top:0;left:0;z-index:46;width:270px;max-width:82vw;height:100vh;overflow:auto;
+  background:rgba(255,255,255,.985);border-right:1px solid var(--line);box-shadow:2px 0 24px rgba(28,37,41,.14);
+  padding:64px 20px 28px 26px;font-size:12.5px;
+  opacity:0;transform:translateX(-104%);pointer-events:none;
+  transition:opacity .28s ease,transform .28s ease}
+/* revealed: hover the trigger strip, hover the nav itself, or .open toggled by button */
+.nav-trigger:hover ~ .toc,
+.toc:hover,
+.toc.open{opacity:1;transform:translateX(0);pointer-events:auto}
 .toc .toclabel{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
 .toc ul{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
-.toc li a{display:block;padding:6px 0 6px 12px;color:#9aa5aa;border-left:2px solid transparent;margin-left:-2px;line-height:1.28;font-weight:400}
-.toc li.toc-h3 a{padding-left:22px;font-size:11px;color:#adb6ba}
+.toc li a{display:block;padding:6px 0 6px 12px;color:#8a959a;border-left:2px solid transparent;margin-left:-2px;line-height:1.3;font-weight:400}
+.toc li.toc-h3 a{padding-left:22px;font-size:11.5px;color:#9aa5aa}
 .toc li a:hover{color:var(--ink);text-decoration:none}
 .toc li a.active{color:var(--coral);border-left-color:var(--coral);font-weight:600}
 .tocdot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--teal);margin-left:6px;vertical-align:middle;opacity:.8}
+/* thin visual hint of the hover strip at the left edge */
+.nav-trigger::before{content:"";position:absolute;top:0;left:0;width:4px;height:100vh;
+  background:linear-gradient(var(--coral),var(--teal));opacity:.28;transition:opacity .28s ease}
+.nav-trigger:hover::before{opacity:.6}
 /* prose */
 .prose{min-width:0;max-width:620px}
 .step{scroll-margin-top:20px;padding:6px 0}
@@ -64,11 +81,16 @@ a:hover{text-decoration:underline}
 .footer{padding-top:20px}
 @media (max-width:1080px){
   .layout{grid-template-columns:1fr;gap:0}
-  .toc{display:none}
+  /* .toc stays a hover/hamburger overlay at every width — never display:none */
   .rail{position:static;height:auto;display:block}
   .railinner{min-height:0}
   .railfig{position:static;opacity:1;transform:none;pointer-events:auto;margin:1.2em 0}
   /* on mobile, move each fig group inline right after its section via JS */
+}
+/* touch / no-hover devices: hover strip can't be reached, so expose a persistent hamburger */
+@media (hover:none),(pointer:coarse){
+  .nav-toggle{display:flex}
+  .nav-trigger{display:none}
 }
 
 /* FIX 4: lightbox */
@@ -82,9 +104,12 @@ a:hover{text-decoration:underline}
 </head>
 <body>
 <div class="progress"></div>
-<nav aria-label="site" style="position:fixed;top:10px;right:12px;z-index:60;display:flex;gap:6px;align-items:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;box-shadow:0 1px 6px rgba(0,0,0,.12);border-radius:999px"><a href="./" style="padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.94);color:#1c2529;text-decoration:none;border:1px solid #e4e8ea;font-weight:500">⌂ Home</a><a href="cofold_browser.html" style="padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.94);color:#1c2529;text-decoration:none;border:1px solid #e4e8ea;font-weight:500">Co-fold browser</a><a href="deck.html" style="padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.94);color:#1c2529;text-decoration:none;border:1px solid #e4e8ea;font-weight:500">Deck</a><span style="padding:5px 11px;border-radius:999px;background:#D97757;color:#fff;font-weight:600">Mini-paper</span></nav>
+<div class="nav-trigger" aria-hidden="true"></div>
+<button class="nav-toggle" aria-label="Toggle contents" aria-expanded="false">☰</button>
+<aside class="toc" id="toc"><div class="toclabel">Contents</div><ul><li class="toc-h2"><a href="#s0-summary" data-target="s0-summary">Summary</a></li><li class="toc-h2"><a href="#s1-design" data-target="s1-design">Design</a></li><li class="toc-h3"><a href="#s2-peptide-set-from-a-billion-smorfs-to-2000-families" data-target="s2-peptide-set-from-a-billion-smorfs-to-2000-families">Peptide set<span class="tocdot" title="has figure"></span></a></li><li class="toc-h3"><a href="#s3-receptor-panel-15-receptors-frozen" data-target="s3-receptor-panel-15-receptors-frozen">Receptor panel</a></li><li class="toc-h3"><a href="#s4-decoys-and-the-null-how-a-hit-is-defined" data-target="s4-decoys-and-the-null-how-a-hit-is-defined">The null</a></li><li class="toc-h2"><a href="#s5-the-correction-that-changed-the-lead" data-target="s5-the-correction-that-changed-the-lead">The correction</a></li><li class="toc-h3"><a href="#s6-locus-context-as-an-axis" data-target="s6-locus-context-as-an-axis">Locus as axis</a></li><li class="toc-h3"><a href="#s7-what-did-not-change" data-target="s7-what-did-not-change">What held</a></li><li class="toc-h2"><a href="#s8-results-the-reranked-leads" data-target="s8-results-the-reranked-leads">Results</a></li><li class="toc-h3"><a href="#s9-a-structural-mimic-not-a-sequence-mimic" data-target="s9-a-structural-mimic-not-a-sequence-mimic">Structural mimic</a></li><li class="toc-h2"><a href="#s10-mimic-engages-the-il-7-binding-site" data-target="s10-mimic-engages-the-il-7-binding-site">IL-7 interface<span class="tocdot" title="has figure"></span></a></li><li class="toc-h3"><a href="#s11-it-selects-il-7r-out-of-its-own-receptor-family" data-target="s11-it-selects-il-7r-out-of-its-own-receptor-family">Specificity<span class="tocdot" title="has figure"></span></a></li><li class="toc-h2"><a href="#s12-why-il-7-is-the-receptor-that-makes-this-interesting" data-target="s12-why-il-7-is-the-receptor-that-makes-this-interesting">Why IL-7</a></li><li class="toc-h2"><a href="#s13-mimic-is-horizontally-mobile" data-target="s13-mimic-is-horizontally-mobile">Mobility<span class="tocdot" title="has figure"></span></a></li><li class="toc-h2"><a href="#s14-the-hypothesis-an-immune-shielding-peptide" data-target="s14-the-hypothesis-an-immune-shielding-peptide">Hypothesis</a></li><li class="toc-h2"><a href="#s15-why-this-matters" data-target="s15-why-this-matters">Why it matters</a></li><li class="toc-h2"><a href="#s16-go-no-go-the-experiment-that-settles-it" data-target="s16-go-no-go-the-experiment-that-settles-it">The assay</a></li><li class="toc-h2"><a href="#s17-the-evidence-ledger-what-this-supports-and-what-it-cannot-sa" data-target="s17-the-evidence-ledger-what-this-supports-and-what-it-cannot-sa">Evidence ledger</a></li><li class="toc-h3"><a href="#s18-known-limitations-stated-not-buried" data-target="s18-known-limitations-stated-not-buried">Limitations</a></li><li class="toc-h2"><a href="#s19-repository-layout" data-target="s19-repository-layout">Repository</a></li><li class="toc-h3"><a href="#s20-key-result-files" data-target="s20-key-result-files">Result files</a></li><li class="toc-h2"><a href="#s21-reproducibility" data-target="s21-reproducibility">Reproducibility</a></li><li class="toc-h3"><a href="#s22-data-provenance-log-version-access-date-per-source" data-target="s22-data-provenance-log-version-access-date-per-source">Data provenance</a></li><li class="toc-h2"><a href="#s23-status" data-target="s23-status">Status</a></li><li class="toc-h2"><a href="#s24-references" data-target="s24-references">References</a></li><li class="toc-h2"><a href="#s25-acknowledgments" data-target="s25-acknowledgments">Acknowledgments</a></li></ul></aside>
+<nav aria-label="site" style="position:fixed;top:10px;right:12px;z-index:60;display:flex;gap:6px;align-items:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;box-shadow:0 1px 6px rgba(0,0,0,.12);border-radius:999px"><a href="./" style="padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.94);color:#1c2529;text-decoration:none;border:1px solid #e4e8ea;font-weight:500">⌂ Home</a><a href="cofold_browser.html" style="padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.94);color:#1c2529;text-decoration:none;border:1px solid #e4e8ea;font-weight:500">Co-fold browser</a><a href="deck.html" style="padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.94);color:#1c2529;text-decoration:none;border:1px solid #e4e8ea;font-weight:500">Deck</a><span style="padding:5px 11px;border-radius:999px;background:#D97757;color:#fff;font-weight:600">Paper</span></nav>
 <header class="masthead">
-  <div class="eyebrow">Gut secretome × human receptor screen · mini-paper</div>
+  <div class="eyebrow">Gut secretome × human receptor screen · paper</div>
   <h1>MIMIC</h1>
 <p><strong>A mobile microbial peptide that engages a human cytokine receptor.</strong></p>
 <p><em>A structure-first screen of the gut secretome against human immune receptors.</em></p>
@@ -92,7 +117,6 @@ a:hover{text-decoration:underline}
 <hr />
 </header>
 <div class="layout">
-  <aside class="toc"><div class="toclabel">Contents</div><ul><li class="toc-h2"><a href="#s0-summary" data-target="s0-summary">Summary</a></li><li class="toc-h2"><a href="#s1-design" data-target="s1-design">Design</a></li><li class="toc-h3"><a href="#s2-peptide-set-from-a-billion-smorfs-to-2000-families" data-target="s2-peptide-set-from-a-billion-smorfs-to-2000-families">Peptide set</a></li><li class="toc-h3"><a href="#s3-receptor-panel-15-receptors-frozen" data-target="s3-receptor-panel-15-receptors-frozen">Receptor panel</a></li><li class="toc-h3"><a href="#s4-decoys-and-the-null-how-a-hit-is-defined" data-target="s4-decoys-and-the-null-how-a-hit-is-defined">The null</a></li><li class="toc-h2"><a href="#s5-the-correction-that-changed-the-lead" data-target="s5-the-correction-that-changed-the-lead">The correction</a></li><li class="toc-h3"><a href="#s6-locus-context-as-an-axis" data-target="s6-locus-context-as-an-axis">Locus as axis</a></li><li class="toc-h3"><a href="#s7-what-did-not-change" data-target="s7-what-did-not-change">What held</a></li><li class="toc-h2"><a href="#s8-results-the-reranked-leads" data-target="s8-results-the-reranked-leads">Results</a></li><li class="toc-h3"><a href="#s9-a-structural-mimic-not-a-sequence-mimic" data-target="s9-a-structural-mimic-not-a-sequence-mimic">Structural mimic</a></li><li class="toc-h2"><a href="#s10-mimic-engages-the-il-7-binding-site" data-target="s10-mimic-engages-the-il-7-binding-site">IL-7 interface<span class="tocdot" title="has figure"></span></a></li><li class="toc-h3"><a href="#s11-it-selects-il-7r-out-of-its-own-receptor-family" data-target="s11-it-selects-il-7r-out-of-its-own-receptor-family">Specificity<span class="tocdot" title="has figure"></span></a></li><li class="toc-h2"><a href="#s12-why-il-7-is-the-receptor-that-makes-this-interesting" data-target="s12-why-il-7-is-the-receptor-that-makes-this-interesting">Why IL-7</a></li><li class="toc-h2"><a href="#s13-mimic-is-horizontally-mobile" data-target="s13-mimic-is-horizontally-mobile">Mobility<span class="tocdot" title="has figure"></span></a></li><li class="toc-h2"><a href="#s14-the-hypothesis-an-immune-shielding-peptide" data-target="s14-the-hypothesis-an-immune-shielding-peptide">Hypothesis</a></li><li class="toc-h2"><a href="#s15-why-this-matters" data-target="s15-why-this-matters">Why it matters</a></li><li class="toc-h2"><a href="#s16-go-no-go-the-experiment-that-settles-it" data-target="s16-go-no-go-the-experiment-that-settles-it">The assay</a></li><li class="toc-h2"><a href="#s17-the-evidence-ledger-what-this-supports-and-what-it-cannot-sa" data-target="s17-the-evidence-ledger-what-this-supports-and-what-it-cannot-sa">Evidence ledger</a></li><li class="toc-h3"><a href="#s18-known-limitations-stated-not-buried" data-target="s18-known-limitations-stated-not-buried">Limitations</a></li><li class="toc-h2"><a href="#s19-repository-layout" data-target="s19-repository-layout">Repository</a></li><li class="toc-h3"><a href="#s20-key-result-files" data-target="s20-key-result-files">Result files</a></li><li class="toc-h2"><a href="#s21-reproducibility" data-target="s21-reproducibility">Reproducibility</a></li><li class="toc-h3"><a href="#s22-data-provenance-log-version-access-date-per-source" data-target="s22-data-provenance-log-version-access-date-per-source">Data provenance</a></li><li class="toc-h2"><a href="#s23-status" data-target="s23-status">Status</a></li><li class="toc-h2"><a href="#s24-references" data-target="s24-references">References</a></li><li class="toc-h2"><a href="#s25-acknowledgments" data-target="s25-acknowledgments">Acknowledgments</a></li></ul></aside>
   <main class="prose">
     <section class="step" id="s0-summary" data-fig=""><h2 class="stephead">Summary</h2><p>The human gut encodes a hundred times more microbial genes than human genes — the body's largest reservoir of coding potential. We have spent a decade reading its output as <em>chemistry</em>: short-chain fatty acids, bile acids, tryptophan metabolites, each mapped to a human receptor. Whether commensals also signal in <em>protein</em> — secreted miniproteins that engage our receptors directly — is essentially unknown. We built a structure-first screen to ask, co-folding ~2,000 gut-secreted miniprotein families against a panel of human immune receptors and sequence-matched decoys, scoring each interface against a null.</p>
 <p>Here we report <strong>MIMIC</strong>, a <strong>M</strong>obile <strong>I</strong>mmuno<strong>M</strong>odulatory <strong>I</strong>CE-borne <strong>C</strong>ommensal peptide. One caveat up front: the <em>modulatory</em> in the name is the hypothesis, not the finding — the pSTAT5 assay decides it. Two features distinguish it. First, it folds a confident interface on <strong>IL7R</strong> and lands on the exact surface where interleukin-7 binds (65% overlap), with no sequence homology to IL-7 — a structural mimic, not a captured gene. Second, it is not fixed to one genome: MIMIC rides a conjugative element and its family spans 239 gut-bacterial species, including 15 strains of the pathogen <em>Clostridioides difficile</em> — the neighborhood is mobile-element-enriched at p = 0.</p>
@@ -106,7 +130,7 @@ disease-linked, tradeable between species, and almost entirely uncharted. This i
 microbe–host communication we have barely begun to read.</p>
 <hr /></section><section class="step" id="s1-design" data-fig=""><h2 class="stephead">Design</h2><p>The unit of observation is a <strong>peptide–human-protein pair</strong>, scored by ESMFold2-Fast
 interface confidence. Never a peptide in isolation, and never a claim of causation — the
-output is a ranked list of structurally-supported candidate interactions.</p></section><section class="step" id="s2-peptide-set-from-a-billion-smorfs-to-2000-families" data-fig=""><h3 class="stephead">Peptide set — from a billion smORFs to ~2,000 families</h3><p>We began from the Global Microbial smORF Catalog (GMSC; ~965M smORFs across 75 habitats,
+output is a ranked list of structurally-supported candidate interactions.</p></section><section class="step" id="s2-peptide-set-from-a-billion-smorfs-to-2000-families" data-fig="s2-peptide-set-from-a-billion-smorfs-to-2000-families"><h3 class="stephead">Peptide set — from a billion smORFs to ~2,000 families</h3><p>We began from the Global Microbial smORF Catalog (GMSC; ~965M smORFs across 75 habitats,
 annotated by taxonomy, habitat, quality, and predicted localization).</p>
 <ol>
 <li><strong>Habitat + secretion + quality filter.</strong> Restrict to <code>human gut</code> habitat, predicted
@@ -690,7 +714,8 @@ regenerates from its inputs plus <code>src/</code>. No proprietary data or asset
 <li>Buchfink B., Reuter K., Drost H. (2021). Sensitive protein alignments at tree-of-life scale using DIAMOND. <em>Nature Methods</em> <strong>18</strong>:366-368. https://doi.org/10.1038/s41592-021-01101-x</li>
 </ol></section><section class="step" id="s25-acknowledgments" data-fig=""><h2 class="stephead">Acknowledgments</h2><p>Structure prediction: ESMFold2 (Chan Zuckerberg Biohub). Peptide catalog: GMSC. Contributors: Kenneth Loi, Zhaojun Wang. Executed with Claude Science.</p></section>
   </main>
-  <aside class="rail"><div class="railinner"><div class="railfig" data-for="s10-mimic-engages-the-il-7-binding-site"><figure class="figcard"><img src="figures/struct_078_vs_il7.png" alt="Peptide overlays the native IL-7 site on IL7R" loading="lazy"><figcaption>Peptide overlays the native IL-7 site on IL7R</figcaption></figure></div>
+  <aside class="rail"><div class="railinner"><div class="railfig" data-for="s2-peptide-set-from-a-billion-smorfs-to-2000-families"><figure class="figcard"><img src="figures/peptide_funnel.png" alt="Curation funnel: 965M GMSC smORFs to 451 folded peptides" loading="lazy"><figcaption>Curation funnel. Four filters take the Global Microbial smORF Catalog (965M smORFs) to the fold set: gut habitat + predicted secreted/TM + high-quality (~100,000), collapse to 90%-identity family representatives (2,187), and the compute-bounded structural shortlist actually folded (451).</figcaption></figure></div>
+<div class="railfig" data-for="s10-mimic-engages-the-il-7-binding-site"><figure class="figcard"><img src="figures/struct_078_vs_il7.png" alt="Peptide overlays the native IL-7 site on IL7R" loading="lazy"><figcaption>Peptide overlays the native IL-7 site on IL7R</figcaption></figure></div>
 <div class="railfig" data-for="s11-it-selects-il-7r-out-of-its-own-receptor-family"><figure class="figcard"><img src="figures/gammac_specificity.png" alt="MIMIC selects IL-7Rα out of the γc family" loading="lazy"><figcaption>MIMIC selects IL-7Rα out of the γc family</figcaption></figure>
 <figure class="figcard"><img src="figures/gammac_energetics_conservation.png" alt="iPTM discriminates the target; contact ΔG does not; the interface is the conserved surface" loading="lazy"><figcaption>iPTM discriminates the target; contact ΔG does not; the interface is the conserved surface</figcaption></figure></div>
 <div class="railfig" data-for="s13-mimic-is-horizontally-mobile"><figure class="figcard"><img src="figures/ice_synteny_078.png" alt="The peptide travels inside a conjugative element" loading="lazy"><figcaption>The peptide travels inside a conjugative element</figcaption></figure>
@@ -760,7 +785,24 @@ tocLinks.forEach(a=>a.addEventListener('click',e=>{
   setActive(id);                       // immediate: swap panel to this section's figure
   clearTimeout(window.__navT);         // re-assert once the smooth scroll settles,
   window.__navT=setTimeout(()=>setActive(id),700);  // so the observer can't leave a stale figure
+  toc.classList.remove('open');        // close the overlay after choosing a destination
 }));
+
+// CHANGE 2: hover-reveal nav — hamburger toggle for touch / no-hover devices.
+const toc=document.getElementById('toc');
+const navToggle=document.querySelector('.nav-toggle');
+navToggle.addEventListener('click',e=>{
+  e.stopPropagation();
+  const open=toc.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded',open?'true':'false');
+});
+// tapping outside the open overlay closes it (touch devices)
+document.addEventListener('click',e=>{
+  if(toc.classList.contains('open') && !toc.contains(e.target) && e.target!==navToggle){
+    toc.classList.remove('open'); navToggle.setAttribute('aria-expanded','false');
+  }
+});
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') toc.classList.remove('open'); });
 
 // FIX 4: click any figure in the data panel to expand it in a lightbox.
 const lb=document.createElement('div'); lb.className='lightbox';
