@@ -22,18 +22,18 @@ a:hover{text-decoration:underline}
 .masthead strong{font-weight:660}
 .progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--coral);z-index:70;transition:width .1s linear}
 .layout{max-width:1280px;margin:0 auto;padding:0 40px 14vh;
-  display:grid;grid-template-columns:210px minmax(0,1fr) minmax(0,44%);gap:38px;align-items:start}
+  display:grid;grid-template-columns:220px minmax(0,1fr) minmax(0,46%);gap:40px;align-items:start}
 /* TOC */
-.toc{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow:auto;font-size:13px;padding-right:6px}
+.toc{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow:auto;font-size:12px;padding-right:6px}
 .toc .toclabel{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
 .toc ul{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
-.toc li a{display:block;padding:3px 0 3px 12px;color:var(--muted);border-left:2px solid transparent;margin-left:-2px;line-height:1.35}
-.toc li.toc-h3 a{padding-left:24px;font-size:12.5px}
+.toc li a{display:block;padding:6px 0 6px 12px;color:#9aa5aa;border-left:2px solid transparent;margin-left:-2px;line-height:1.28;font-weight:400}
+.toc li.toc-h3 a{padding-left:22px;font-size:11px;color:#adb6ba}
 .toc li a:hover{color:var(--ink);text-decoration:none}
 .toc li a.active{color:var(--coral);border-left-color:var(--coral);font-weight:600}
 .tocdot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--teal);margin-left:6px;vertical-align:middle;opacity:.8}
 /* prose */
-.prose{min-width:0}
+.prose{min-width:0;max-width:620px}
 .step{scroll-margin-top:20px;padding:6px 0}
 .step .stephead{font-weight:660;letter-spacing:-0.01em}
 .step h2.stephead{font-size:1.6rem;margin:1.4em 0 .4em;padding-top:.5em;border-top:1px solid var(--line)}
@@ -51,12 +51,12 @@ a:hover{text-decoration:underline}
 .prose tr:nth-child(even) td{background:#fbfcfc}
 .prose hr{border:none;border-top:1px solid var(--line);margin:2em 0}
 /* figure rail */
-.rail{position:sticky;top:24px;align-self:start;height:calc(100vh - 48px);display:flex;flex-direction:column;justify-content:center}
+.rail{position:sticky;top:24px;align-self:start;height:calc(100vh - 48px);display:flex;flex-direction:column;justify-content:center;padding-left:24px}
 .railinner{position:relative;min-height:120px}
 .railfig{position:absolute;inset:0;opacity:0;transform:translateY(14px);pointer-events:none;
   transition:opacity .45s ease,transform .45s ease;display:flex;flex-direction:column;justify-content:center;gap:14px}
 .railfig.active{opacity:1;transform:none;pointer-events:auto;position:relative}
-.figcard{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:0 2px 14px rgba(28,37,41,.05)}
+.figcard{margin:0;max-width:100%;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:0 2px 14px rgba(28,37,41,.05);cursor:zoom-in}
 .figcard img{display:block;width:100%;height:auto;border-radius:6px}
 .figcard figcaption{font-size:12.5px;color:var(--muted);line-height:1.4;margin-top:9px}
 .railhint{position:sticky;top:24px;color:var(--muted);font-size:12.5px;font-style:italic;opacity:.7}
@@ -70,6 +70,14 @@ a:hover{text-decoration:underline}
   .railfig{position:static;opacity:1;transform:none;pointer-events:auto;margin:1.2em 0}
   /* on mobile, move each fig group inline right after its section via JS */
 }
+
+/* FIX 4: lightbox */
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(15,21,24,.9);display:none;align-items:center;justify-content:center;padding:4vh 4vw;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:100%;max-height:92vh;width:auto;height:auto;border-radius:8px;box-shadow:0 10px 46px rgba(0,0,0,.55);background:#fff}
+.lbclose{position:fixed;top:14px;right:20px;font-size:36px;line-height:1;color:#fff;background:none;border:none;cursor:pointer;z-index:101;opacity:.85;font-family:inherit}
+.lbclose:hover{opacity:1}
+.figcard img{cursor:zoom-in}
 </style>
 </head>
 <body>
@@ -84,7 +92,7 @@ a:hover{text-decoration:underline}
 <hr />
 </header>
 <div class="layout">
-  <aside class="toc"><div class="toclabel">Contents</div><ul><li class="toc-h2"><a href="#s0-summary" data-target="s0-summary">Summary</a></li><li class="toc-h2"><a href="#s1-design" data-target="s1-design">Design</a></li><li class="toc-h3"><a href="#s2-peptide-set-from-a-billion-smorfs-to-2000-families" data-target="s2-peptide-set-from-a-billion-smorfs-to-2000-families">Peptide set — from a billion smORFs to ~2,000 families</a></li><li class="toc-h3"><a href="#s3-receptor-panel-15-receptors-frozen" data-target="s3-receptor-panel-15-receptors-frozen">Receptor panel — 15 receptors, frozen</a></li><li class="toc-h3"><a href="#s4-decoys-and-the-null-how-a-hit-is-defined" data-target="s4-decoys-and-the-null-how-a-hit-is-defined">Decoys and the null — how a &quot;hit&quot; is defined</a></li><li class="toc-h2"><a href="#s5-the-correction-that-changed-the-lead" data-target="s5-the-correction-that-changed-the-lead">The correction that changed the lead</a></li><li class="toc-h3"><a href="#s6-locus-context-as-an-axis" data-target="s6-locus-context-as-an-axis">Locus context as an axis</a></li><li class="toc-h3"><a href="#s7-what-did-not-change" data-target="s7-what-did-not-change">What did not change</a></li><li class="toc-h2"><a href="#s8-results-the-reranked-leads" data-target="s8-results-the-reranked-leads">Results — the reranked leads</a></li><li class="toc-h3"><a href="#s9-a-structural-mimic-not-a-sequence-mimic" data-target="s9-a-structural-mimic-not-a-sequence-mimic">A structural mimic, not a sequence mimic</a></li><li class="toc-h2"><a href="#s10-mimic-engages-the-il-7-binding-site" data-target="s10-mimic-engages-the-il-7-binding-site">MIMIC engages the IL-7 binding site<span class="tocdot" title="has figure"></span></a></li><li class="toc-h3"><a href="#s11-it-selects-il-7r-out-of-its-own-receptor-family" data-target="s11-it-selects-il-7r-out-of-its-own-receptor-family">It selects IL-7Rα out of its own receptor family<span class="tocdot" title="has figure"></span></a></li><li class="toc-h2"><a href="#s12-why-il-7-is-the-receptor-that-makes-this-interesting" data-target="s12-why-il-7-is-the-receptor-that-makes-this-interesting">IL-7 is the T-cell survival signal — MIMIC lands on its ligand site</a></li><li class="toc-h2"><a href="#s13-mimic-is-horizontally-mobile" data-target="s13-mimic-is-horizontally-mobile">MIMIC is horizontally mobile<span class="tocdot" title="has figure"></span></a></li><li class="toc-h2"><a href="#s14-the-hypothesis-an-immune-shielding-peptide" data-target="s14-the-hypothesis-an-immune-shielding-peptide">The hypothesis: an immune-shielding peptide</a></li><li class="toc-h2"><a href="#s15-why-this-matters" data-target="s15-why-this-matters">Why this matters</a></li><li class="toc-h2"><a href="#s16-go-no-go-the-experiment-that-settles-it" data-target="s16-go-no-go-the-experiment-that-settles-it">Go / no-go: the experiment that settles it</a></li><li class="toc-h2"><a href="#s17-the-evidence-ledger-what-this-supports-and-what-it-cannot-sa" data-target="s17-the-evidence-ledger-what-this-supports-and-what-it-cannot-sa">The evidence ledger — what this supports, and what it cannot say</a></li><li class="toc-h3"><a href="#s18-known-limitations-stated-not-buried" data-target="s18-known-limitations-stated-not-buried">Known limitations (stated, not buried)</a></li><li class="toc-h2"><a href="#s19-repository-layout" data-target="s19-repository-layout">Repository layout</a></li><li class="toc-h3"><a href="#s20-key-result-files" data-target="s20-key-result-files">Key result files</a></li><li class="toc-h2"><a href="#s21-reproducibility" data-target="s21-reproducibility">Reproducibility</a></li><li class="toc-h3"><a href="#s22-data-provenance-log-version-access-date-per-source" data-target="s22-data-provenance-log-version-access-date-per-source">Data provenance (log version + access date per source)</a></li><li class="toc-h2"><a href="#s23-status" data-target="s23-status">Status</a></li><li class="toc-h2"><a href="#s24-references" data-target="s24-references">References</a></li><li class="toc-h2"><a href="#s25-acknowledgments" data-target="s25-acknowledgments">Acknowledgments</a></li></ul></aside>
+  <aside class="toc"><div class="toclabel">Contents</div><ul><li class="toc-h2"><a href="#s0-summary" data-target="s0-summary">Summary</a></li><li class="toc-h2"><a href="#s1-design" data-target="s1-design">Design</a></li><li class="toc-h3"><a href="#s2-peptide-set-from-a-billion-smorfs-to-2000-families" data-target="s2-peptide-set-from-a-billion-smorfs-to-2000-families">Peptide set</a></li><li class="toc-h3"><a href="#s3-receptor-panel-15-receptors-frozen" data-target="s3-receptor-panel-15-receptors-frozen">Receptor panel</a></li><li class="toc-h3"><a href="#s4-decoys-and-the-null-how-a-hit-is-defined" data-target="s4-decoys-and-the-null-how-a-hit-is-defined">The null</a></li><li class="toc-h2"><a href="#s5-the-correction-that-changed-the-lead" data-target="s5-the-correction-that-changed-the-lead">The correction</a></li><li class="toc-h3"><a href="#s6-locus-context-as-an-axis" data-target="s6-locus-context-as-an-axis">Locus as axis</a></li><li class="toc-h3"><a href="#s7-what-did-not-change" data-target="s7-what-did-not-change">What held</a></li><li class="toc-h2"><a href="#s8-results-the-reranked-leads" data-target="s8-results-the-reranked-leads">Results</a></li><li class="toc-h3"><a href="#s9-a-structural-mimic-not-a-sequence-mimic" data-target="s9-a-structural-mimic-not-a-sequence-mimic">Structural mimic</a></li><li class="toc-h2"><a href="#s10-mimic-engages-the-il-7-binding-site" data-target="s10-mimic-engages-the-il-7-binding-site">IL-7 interface<span class="tocdot" title="has figure"></span></a></li><li class="toc-h3"><a href="#s11-it-selects-il-7r-out-of-its-own-receptor-family" data-target="s11-it-selects-il-7r-out-of-its-own-receptor-family">Specificity<span class="tocdot" title="has figure"></span></a></li><li class="toc-h2"><a href="#s12-why-il-7-is-the-receptor-that-makes-this-interesting" data-target="s12-why-il-7-is-the-receptor-that-makes-this-interesting">Why IL-7</a></li><li class="toc-h2"><a href="#s13-mimic-is-horizontally-mobile" data-target="s13-mimic-is-horizontally-mobile">Mobility<span class="tocdot" title="has figure"></span></a></li><li class="toc-h2"><a href="#s14-the-hypothesis-an-immune-shielding-peptide" data-target="s14-the-hypothesis-an-immune-shielding-peptide">Hypothesis</a></li><li class="toc-h2"><a href="#s15-why-this-matters" data-target="s15-why-this-matters">Why it matters</a></li><li class="toc-h2"><a href="#s16-go-no-go-the-experiment-that-settles-it" data-target="s16-go-no-go-the-experiment-that-settles-it">The assay</a></li><li class="toc-h2"><a href="#s17-the-evidence-ledger-what-this-supports-and-what-it-cannot-sa" data-target="s17-the-evidence-ledger-what-this-supports-and-what-it-cannot-sa">Evidence ledger</a></li><li class="toc-h3"><a href="#s18-known-limitations-stated-not-buried" data-target="s18-known-limitations-stated-not-buried">Limitations</a></li><li class="toc-h2"><a href="#s19-repository-layout" data-target="s19-repository-layout">Repository</a></li><li class="toc-h3"><a href="#s20-key-result-files" data-target="s20-key-result-files">Result files</a></li><li class="toc-h2"><a href="#s21-reproducibility" data-target="s21-reproducibility">Reproducibility</a></li><li class="toc-h3"><a href="#s22-data-provenance-log-version-access-date-per-source" data-target="s22-data-provenance-log-version-access-date-per-source">Data provenance</a></li><li class="toc-h2"><a href="#s23-status" data-target="s23-status">Status</a></li><li class="toc-h2"><a href="#s24-references" data-target="s24-references">References</a></li><li class="toc-h2"><a href="#s25-acknowledgments" data-target="s25-acknowledgments">Acknowledgments</a></li></ul></aside>
   <main class="prose">
     <section class="step" id="s0-summary" data-fig=""><h2 class="stephead">Summary</h2><p>The human gut encodes a hundred times more microbial genes than human genes — the body's largest reservoir of coding potential. We have spent a decade reading its output as <em>chemistry</em>: short-chain fatty acids, bile acids, tryptophan metabolites, each mapped to a human receptor. Whether commensals also signal in <em>protein</em> — secreted miniproteins that engage our receptors directly — is essentially unknown. We built a structure-first screen to ask, co-folding ~2,000 gut-secreted miniprotein families against a panel of human immune receptors and sequence-matched decoys, scoring each interface against a null.</p>
 <p>Here we report <strong>MIMIC</strong>, a <strong>M</strong>obile <strong>I</strong>mmuno<strong>M</strong>odulatory <strong>I</strong>CE-borne <strong>C</strong>ommensal peptide. One caveat up front: the <em>modulatory</em> in the name is the hypothesis, not the finding — the pSTAT5 assay decides it. Two features distinguish it. First, it folds a confident interface on <strong>IL7R</strong> and lands on the exact surface where interleukin-7 binds (65% overlap), with no sequence homology to IL-7 — a structural mimic, not a captured gene. Second, it is not fixed to one genome: MIMIC rides a conjugative element and its family spans 239 gut-bacterial species, including 15 strains of the pathogen <em>Clostridioides difficile</em> — the neighborhood is mobile-element-enriched at p = 0.</p>
@@ -739,6 +747,33 @@ function handleMobile(){
 }
 handleMobile();
 window.addEventListener('resize',()=>{ /* no reflow back to rail needed for a static page load */ });
+
+// FIX 3: clicking a nav item must update the sticky panel, not only scroll.
+// The IntersectionObserver can miss a fast smooth-scroll jump, so drive setActive explicitly.
+tocLinks.forEach(a=>a.addEventListener('click',e=>{
+  const id=a.dataset.target;
+  const el=document.getElementById(id);
+  if(!el) return;
+  e.preventDefault();
+  history.replaceState(null,'','#'+id);
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+  setActive(id);                       // immediate: swap panel to this section's figure
+  clearTimeout(window.__navT);         // re-assert once the smooth scroll settles,
+  window.__navT=setTimeout(()=>setActive(id),700);  // so the observer can't leave a stale figure
+}));
+
+// FIX 4: click any figure in the data panel to expand it in a lightbox.
+const lb=document.createElement('div'); lb.className='lightbox';
+lb.innerHTML='<button class="lbclose" aria-label="Close">\u00d7</button><img alt="">';
+document.body.appendChild(lb);
+const lbImg=lb.querySelector('img');
+function openLB(src,alt){ lbImg.src=src; lbImg.alt=alt||''; lb.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeLB(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+document.querySelectorAll('.figcard img').forEach(img=>{
+  img.addEventListener('click',e=>{ e.stopPropagation(); openLB(img.currentSrc||img.src, img.alt); });
+});
+lb.addEventListener('click',closeLB);
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&lb.classList.contains('open')) closeLB(); });
 </script>
 </body>
 </html>
