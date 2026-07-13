@@ -57,7 +57,7 @@ From the Global Microbial smORF Catalog (GMSC), filter to gut habitat + predicte
 panel of 15 human immune receptors plus 10 decoy receptors (25 targets) with ESMFold2-Fast,
 recording iPTM and interface PAE per pair. Convert each interface confidence to a
 decoy-calibrated z-score. A provenance audit re-derived every mature peptide (post-signal-
-peptide cleavage) and refolded 7,408 structures (297 families × 25 targets) in one session,
+peptide cleavage) and refolded 7,408 of a possible 7,425 interfaces (297 families × 25 targets, one family folded partially) in one session,
 which reranked the whole screen and moved the lead onto MIMIC-078 × IL-7Rα. Full detail,
 including the audit, in the mini-paper.
 
