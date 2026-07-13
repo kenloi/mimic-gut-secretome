@@ -1,6 +1,6 @@
 # MIMIC
 
-**▶ [Live interactive deck](https://kenloi.github.io/mimic-gut-secretome/)** — click through the 11-slide demo; slide 6 has a manipulable 3D structure of MIMIC on IL7R.
+**▶ [Live site](https://kenloi.github.io/mimic-gut-secretome/)** — hub linking the interactive [co-fold browser](https://kenloi.github.io/mimic-gut-secretome/cofold_browser.html) (all 7,408 interfaces) and the [11-slide deck](https://kenloi.github.io/mimic-gut-secretome/deck.html); deck slide 6 has a manipulable 3D structure of MIMIC on IL7R.
 
 
 **A mobile microbial peptide that engages a human cytokine receptor.**
