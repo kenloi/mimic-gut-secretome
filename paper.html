@@ -3,48 +3,90 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache">
 <title>MIMIC — mini-paper &amp; methods</title>
 <style>
-  :root{ --coral:#D97757; --teal:#4A7B87; --ink:#1c2529; --muted:#6b7a80;
-         --line:#e4e8ea; --bg:#faf9f7; --panel:#ffffff; }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased}
-  .paper{max-width:760px;margin:0 auto;padding:7vh 24px 12vh}
-  h1{font-size:2.1rem;line-height:1.16;font-weight:680;letter-spacing:-0.01em;margin:.2em 0 .5em}
-  h2{font-size:1.5rem;font-weight:660;letter-spacing:-0.01em;margin:2.2em 0 .5em;padding-top:.4em;border-top:1px solid var(--line)}
-  h3{font-size:1.15rem;font-weight:640;margin:1.8em 0 .4em;color:#2a353a}
-  p{margin:.7em 0}
-  a{color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(74,123,135,.35)}
-  a:hover{border-bottom-color:var(--teal)}
-  code{background:#eef2f3;padding:.1em .35em;border-radius:4px;font-size:.88em;
-    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-  pre{background:#0f1518;color:#e7edef;padding:14px 16px;border-radius:10px;overflow:auto;font-size:.85em}
-  pre code{background:none;padding:0;color:inherit}
-  img{max-width:100%;height:auto;display:block;margin:1.4em auto;border:1px solid var(--line);border-radius:8px;background:#fff}
-  table{border-collapse:collapse;width:100%;margin:1.4em 0;font-size:.9rem}
-  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left}
-  th{background:#f2f5f6;font-weight:640}
-  tr:nth-child(even) td{background:#fbfcfc}
-  blockquote{margin:1.2em 0;padding:.4em 1.1em;border-left:3px solid var(--coral);color:#485258;background:#fff}
-  hr{border:none;border-top:1px solid var(--line);margin:2.4em 0}
-  strong{font-weight:660}
-  .topbar{max-width:760px;margin:0 auto;padding:22px 24px 0}
-  .topbar .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-  .backhome{display:inline-block;margin-top:34px;font-size:.92rem;color:var(--teal);font-weight:600}
+:root{--coral:#D97757;--teal:#4A7B87;--ink:#1c2529;--muted:#6b7a80;--line:#e4e8ea;--bg:#faf9f7;--panel:#ffffff;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+.masthead{max-width:1280px;margin:0 auto;padding:8vh 40px 2vh}
+.masthead .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.masthead h1{font-size:2.5rem;line-height:1.14;font-weight:690;letter-spacing:-0.015em;margin:.25em 0 .35em;max-width:22ch}
+.masthead h1 .hl{color:var(--coral)}
+.masthead p{font-size:1.12rem;color:#3b464b;max-width:66ch;margin:.5em 0}
+.masthead strong{font-weight:660}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--coral);z-index:70;transition:width .1s linear}
+.layout{max-width:1280px;margin:0 auto;padding:0 40px 14vh;
+  display:grid;grid-template-columns:210px minmax(0,1fr) minmax(0,44%);gap:38px;align-items:start}
+/* TOC */
+.toc{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow:auto;font-size:13px;padding-right:6px}
+.toc .toclabel{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.toc ul{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+.toc li a{display:block;padding:3px 0 3px 12px;color:var(--muted);border-left:2px solid transparent;margin-left:-2px;line-height:1.35}
+.toc li.toc-h3 a{padding-left:24px;font-size:12.5px}
+.toc li a:hover{color:var(--ink);text-decoration:none}
+.toc li a.active{color:var(--coral);border-left-color:var(--coral);font-weight:600}
+.tocdot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--teal);margin-left:6px;vertical-align:middle;opacity:.8}
+/* prose */
+.prose{min-width:0}
+.step{scroll-margin-top:20px;padding:6px 0}
+.step .stephead{font-weight:660;letter-spacing:-0.01em}
+.step h2.stephead{font-size:1.6rem;margin:1.4em 0 .4em;padding-top:.5em;border-top:1px solid var(--line)}
+.step:first-child h2.stephead{border-top:none;padding-top:0;margin-top:0}
+.step h3.stephead{font-size:1.2rem;margin:1.3em 0 .3em;color:#2a353a}
+.prose p{margin:.65em 0}
+.prose strong{font-weight:660}
+.prose code{background:#eef2f3;padding:.1em .35em;border-radius:4px;font-size:.87em;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.prose pre{background:#0f1518;color:#e7edef;padding:14px 16px;border-radius:10px;overflow:auto;font-size:.82em}
+.prose pre code{background:none;padding:0;color:inherit}
+.prose blockquote{margin:1.1em 0;padding:.4em 1.1em;border-left:3px solid var(--coral);color:#485258;background:#fff}
+.prose table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.86rem}
+.prose th,.prose td{border:1px solid var(--line);padding:6px 9px;text-align:left}
+.prose th{background:#f2f5f6;font-weight:640}
+.prose tr:nth-child(even) td{background:#fbfcfc}
+.prose hr{border:none;border-top:1px solid var(--line);margin:2em 0}
+/* figure rail */
+.rail{position:sticky;top:24px;align-self:start;height:calc(100vh - 48px);display:flex;flex-direction:column;justify-content:center}
+.railinner{position:relative;min-height:120px}
+.railfig{position:absolute;inset:0;opacity:0;transform:translateY(14px);pointer-events:none;
+  transition:opacity .45s ease,transform .45s ease;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.railfig.active{opacity:1;transform:none;pointer-events:auto;position:relative}
+.figcard{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:0 2px 14px rgba(28,37,41,.05)}
+.figcard img{display:block;width:100%;height:auto;border-radius:6px}
+.figcard figcaption{font-size:12.5px;color:var(--muted);line-height:1.4;margin-top:9px}
+.railhint{position:sticky;top:24px;color:var(--muted);font-size:12.5px;font-style:italic;opacity:.7}
+.footer{max-width:1280px;margin:0 auto;padding:0 40px 10vh;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+.footer{padding-top:20px}
+@media (max-width:1080px){
+  .layout{grid-template-columns:1fr;gap:0}
+  .toc{display:none}
+  .rail{position:static;height:auto;display:block}
+  .railinner{min-height:0}
+  .railfig{position:static;opacity:1;transform:none;pointer-events:auto;margin:1.2em 0}
+  /* on mobile, move each fig group inline right after its section via JS */
+}
 </style>
 </head>
 <body>
-<nav aria-label="site" style="position:fixed;top:10px;right:12px;z-index:50;display:flex;gap:6px;align-items:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;box-shadow:0 1px 6px rgba(0,0,0,.12);border-radius:999px"><a href="./" style="padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.92);color:#1c2529;text-decoration:none;border:1px solid #e4e8ea;font-weight:500">⌂ Home</a><a href="cofold_browser.html" style="padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.92);color:#1c2529;text-decoration:none;border:1px solid #e4e8ea;font-weight:500">Co-fold browser</a><a href="deck.html" style="padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.92);color:#1c2529;text-decoration:none;border:1px solid #e4e8ea;font-weight:500">Deck</a><span style="padding:5px 11px;border-radius:999px;background:#D97757;color:#fff;font-weight:600">Mini-paper</span></nav>
-<div class="paper">
-<h1 id="mimic">MIMIC</h1>
+<div class="progress"></div>
+<nav aria-label="site" style="position:fixed;top:10px;right:12px;z-index:60;display:flex;gap:6px;align-items:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;box-shadow:0 1px 6px rgba(0,0,0,.12);border-radius:999px"><a href="./" style="padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.94);color:#1c2529;text-decoration:none;border:1px solid #e4e8ea;font-weight:500">⌂ Home</a><a href="cofold_browser.html" style="padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.94);color:#1c2529;text-decoration:none;border:1px solid #e4e8ea;font-weight:500">Co-fold browser</a><a href="deck.html" style="padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.94);color:#1c2529;text-decoration:none;border:1px solid #e4e8ea;font-weight:500">Deck</a><span style="padding:5px 11px;border-radius:999px;background:#D97757;color:#fff;font-weight:600">Mini-paper</span></nav>
+<header class="masthead">
+  <div class="eyebrow">Gut secretome × human receptor screen · mini-paper</div>
+  <h1>MIMIC</h1>
 <p><strong>A mobile microbial peptide that engages a human cytokine receptor.</strong></p>
 <p><em>A structure-first screen of the gut secretome against human immune receptors.</em></p>
 <p><strong>Kenneth Loi, Zhaojun Wang</strong> · Built with Claude Science</p>
 <hr />
-<h2 id="summary">Summary</h2>
-<p>The human gut encodes a hundred times more microbial genes than human genes — the body's largest reservoir of coding potential. We have spent a decade reading its output as <em>chemistry</em>: short-chain fatty acids, bile acids, tryptophan metabolites, each mapped to a human receptor. Whether commensals also signal in <em>protein</em> — secreted miniproteins that engage our receptors directly — is essentially unknown. We built a structure-first screen to ask, co-folding ~2,000 gut-secreted miniprotein families against a panel of human immune receptors and sequence-matched decoys, scoring each interface against a null.</p>
+</header>
+<div class="layout">
+  <aside class="toc"><div class="toclabel">Contents</div><ul><li class="toc-h2"><a href="#s0-summary" data-target="s0-summary">Summary</a></li><li class="toc-h2"><a href="#s1-design" data-target="s1-design">Design</a></li><li class="toc-h3"><a href="#s2-peptide-set-from-a-billion-smorfs-to-2000-families" data-target="s2-peptide-set-from-a-billion-smorfs-to-2000-families">Peptide set — from a billion smORFs to ~2,000 families</a></li><li class="toc-h3"><a href="#s3-receptor-panel-15-receptors-frozen" data-target="s3-receptor-panel-15-receptors-frozen">Receptor panel — 15 receptors, frozen</a></li><li class="toc-h3"><a href="#s4-decoys-and-the-null-how-a-hit-is-defined" data-target="s4-decoys-and-the-null-how-a-hit-is-defined">Decoys and the null — how a &quot;hit&quot; is defined</a></li><li class="toc-h2"><a href="#s5-the-correction-that-changed-the-lead" data-target="s5-the-correction-that-changed-the-lead">The correction that changed the lead</a></li><li class="toc-h3"><a href="#s6-locus-context-as-an-axis" data-target="s6-locus-context-as-an-axis">Locus context as an axis</a></li><li class="toc-h3"><a href="#s7-what-did-not-change" data-target="s7-what-did-not-change">What did not change</a></li><li class="toc-h2"><a href="#s8-results-the-reranked-leads" data-target="s8-results-the-reranked-leads">Results — the reranked leads</a></li><li class="toc-h3"><a href="#s9-a-structural-mimic-not-a-sequence-mimic" data-target="s9-a-structural-mimic-not-a-sequence-mimic">A structural mimic, not a sequence mimic</a></li><li class="toc-h2"><a href="#s10-mimic-engages-the-il-7-binding-site" data-target="s10-mimic-engages-the-il-7-binding-site">MIMIC engages the IL-7 binding site<span class="tocdot" title="has figure"></span></a></li><li class="toc-h3"><a href="#s11-it-selects-il-7r-out-of-its-own-receptor-family" data-target="s11-it-selects-il-7r-out-of-its-own-receptor-family">It selects IL-7Rα out of its own receptor family<span class="tocdot" title="has figure"></span></a></li><li class="toc-h2"><a href="#s12-why-il-7-is-the-receptor-that-makes-this-interesting" data-target="s12-why-il-7-is-the-receptor-that-makes-this-interesting">Why IL-7 is the receptor that makes this interesting</a></li><li class="toc-h2"><a href="#s13-mimic-is-horizontally-mobile" data-target="s13-mimic-is-horizontally-mobile">MIMIC is horizontally mobile<span class="tocdot" title="has figure"></span></a></li><li class="toc-h2"><a href="#s14-the-hypothesis-an-immune-shielding-peptide" data-target="s14-the-hypothesis-an-immune-shielding-peptide">The hypothesis: an immune-shielding peptide</a></li><li class="toc-h2"><a href="#s15-why-this-matters" data-target="s15-why-this-matters">Why this matters</a></li><li class="toc-h2"><a href="#s16-go-no-go-the-experiment-that-settles-it" data-target="s16-go-no-go-the-experiment-that-settles-it">Go / no-go: the experiment that settles it</a></li><li class="toc-h2"><a href="#s17-the-evidence-ledger-what-this-supports-and-what-it-cannot-sa" data-target="s17-the-evidence-ledger-what-this-supports-and-what-it-cannot-sa">The evidence ledger — what this supports, and what it cannot say</a></li><li class="toc-h3"><a href="#s18-known-limitations-stated-not-buried" data-target="s18-known-limitations-stated-not-buried">Known limitations (stated, not buried)</a></li><li class="toc-h2"><a href="#s19-repository-layout" data-target="s19-repository-layout">Repository layout</a></li><li class="toc-h3"><a href="#s20-key-result-files" data-target="s20-key-result-files">Key result files</a></li><li class="toc-h2"><a href="#s21-reproducibility" data-target="s21-reproducibility">Reproducibility</a></li><li class="toc-h3"><a href="#s22-data-provenance-log-version-access-date-per-source" data-target="s22-data-provenance-log-version-access-date-per-source">Data provenance (log version + access date per source)</a></li><li class="toc-h2"><a href="#s23-status" data-target="s23-status">Status</a></li><li class="toc-h2"><a href="#s24-references" data-target="s24-references">References</a></li><li class="toc-h2"><a href="#s25-acknowledgments" data-target="s25-acknowledgments">Acknowledgments</a></li></ul></aside>
+  <main class="prose">
+    <section class="step" id="s0-summary" data-fig=""><h2 class="stephead">Summary</h2><p>The human gut encodes a hundred times more microbial genes than human genes — the body's largest reservoir of coding potential. We have spent a decade reading its output as <em>chemistry</em>: short-chain fatty acids, bile acids, tryptophan metabolites, each mapped to a human receptor. Whether commensals also signal in <em>protein</em> — secreted miniproteins that engage our receptors directly — is essentially unknown. We built a structure-first screen to ask, co-folding ~2,000 gut-secreted miniprotein families against a panel of human immune receptors and sequence-matched decoys, scoring each interface against a null.</p>
 <p>Here we report <strong>MIMIC</strong>, a <strong>M</strong>obile <strong>I</strong>mmuno<strong>M</strong>odulatory <strong>I</strong>CE-borne <strong>C</strong>ommensal peptide. Two features distinguish it. First, it folds a confident interface on <strong>IL7R</strong> and lands on the exact surface where interleukin-7 binds (65% overlap), with no sequence homology to IL-7 — a structural mimic, not a captured gene. Second, it is not fixed to one genome: MIMIC rides a conjugative element and its family spans 239 gut-bacterial species, including 15 strains of the pathogen <em>Clostridioides difficile</em> — the neighborhood is mobile-element-enriched at p = 0.</p>
 <p><strong>Mobility is specific to this family, not the candidate set.</strong> Of the 592 candidate families scanned for genomic context, only three sit above the 95th-percentile mobility threshold — and all three are 078-family IL-7Rα binders (078_038_456 at 31%, 083_643_341 at 15%, 078_038_499 at 11%). Every independent candidate — including the other IL7R hits and the TNFR2/IL10RA/IL23R binders — sits at genomic background (median 0% MGE neighbors). So mobility co-segregates with the peptide that engages IL-7Rα; it is not a general property of gut smORFs.003 (2nd of 592 families).</p>
 <p>The ligand-competitive geometry suggests an <strong>IL-7 antagonist</strong> — an immune-shielding
@@ -54,13 +96,9 @@ is unresolved until a pSTAT5 competition assay decides it. One peptide is a lead
 behind it is larger. The microbiome may be a mobile library of human-receptor ligands —
 disease-linked, tradeable between species, and almost entirely uncharted. This is an axis of
 microbe–host communication we have barely begun to read.</p>
-<hr />
-<h2 id="design">Design</h2>
-<p>The unit of observation is a <strong>peptide–human-protein pair</strong>, scored by ESMFold2-Fast
+<hr /></section><section class="step" id="s1-design" data-fig=""><h2 class="stephead">Design</h2><p>The unit of observation is a <strong>peptide–human-protein pair</strong>, scored by ESMFold2-Fast
 interface confidence. Never a peptide in isolation, and never a claim of causation — the
-output is a ranked list of structurally-supported candidate interactions.</p>
-<h3 id="peptide-set-from-a-billion-smorfs-to-2000-families">Peptide set — from a billion smORFs to ~2,000 families</h3>
-<p>We began from the Global Microbial smORF Catalog (GMSC; ~965M smORFs across 75 habitats,
+output is a ranked list of structurally-supported candidate interactions.</p></section><section class="step" id="s2-peptide-set-from-a-billion-smorfs-to-2000-families" data-fig=""><h3 class="stephead">Peptide set — from a billion smORFs to ~2,000 families</h3><p>We began from the Global Microbial smORF Catalog (GMSC; ~965M smORFs across 75 habitats,
 annotated by taxonomy, habitat, quality, and predicted localization).</p>
 <ol>
 <li><strong>Habitat + secretion + quality filter.</strong> Restrict to <code>human gut</code> habitat, predicted
@@ -72,9 +110,7 @@ annotated by taxonomy, habitat, quality, and predicted localization).</p>
 </ol>
 <p>The peptide is the unit; a family representative stands for its family. Genomic context
 (recovered from DIAMOND/MMseqs homolog loci) is used downstream as a <em>prioritization
-axis</em>, not a pre-filter — see "Locus context as an axis" below.</p>
-<h3 id="receptor-panel-15-receptors-frozen">Receptor panel — 15 receptors, frozen</h3>
-<p>The human target panel was curated by a collaborator (Zhaojun Wang) and <strong>frozen before
+axis</em>, not a pre-filter — see "Locus context as an axis" below.</p></section><section class="step" id="s3-receptor-panel-15-receptors-frozen" data-fig=""><h3 class="stephead">Receptor panel — 15 receptors, frozen</h3><p>The human target panel was curated by a collaborator (Zhaojun Wang) and <strong>frozen before
 any structure prediction</strong> — an immutable 15-receptor panel, so no target is chosen after
 seeing a score. Selection combined four live-verified evidence sources: <strong>UniProt</strong>
 (sequence, ectodomain/TM topology, signal peptide), <strong>Open Targets Platform v4</strong> (IBD /
@@ -85,9 +121,7 @@ receptor carries a <strong>gate</strong> (folding suitability) and an <strong>em
 was kept. Categories: cytokine receptors (IL7R, IL6R, IL10RA, IL23R, TNFRSF1B),
 chemoattractant / class-A GPCRs (FPR1, FPR2, CCR6, CXCR4, GPR35, GLP1R), pattern /
 barrier / adhesion (TLR2, EGFR, ITGA4, ITGB7). The ectodomain (not the full-length
-receptor) was folded where the ligand engages the ECD.</p>
-<h3 id="decoys-and-the-null-how-a-hit-is-defined">Decoys and the null — how a "hit" is defined</h3>
-<p>A high iPTM means nothing without a null. We added <strong>10 decoy receptors</strong> — structurally
+receptor) was folded where the ligand engages the ECD.</p></section><section class="step" id="s4-decoys-and-the-null-how-a-hit-is-defined" data-fig=""><h3 class="stephead">Decoys and the null — how a &quot;hit&quot; is defined</h3><p>A high iPTM means nothing without a null. We added <strong>10 decoy receptors</strong> — structurally
 comparable human receptors <em>outside</em> the immune-signaling hypothesis (INSR, EPOR, GHR,
 LGR4, GCGR, PTHR1, ADRB2, DRD2, ITGAV, ITGB3), several of them groove-bearing folds so
 the decoy set is a hard specificity test, not just housekeeping enzymes. Every peptide is
@@ -95,9 +129,7 @@ folded against all <strong>25 targets (15 + 10)</strong>. A pair's interface con
 a <strong>decoy-calibrated z-score</strong> against that peptide's own decoy distribution. The gate is
 <code>iPTM ≥ 0.5, interface PAE ≤ 15 Å, z ≥ 3</code> — a hit must beat its own null, not merely score
 well. (Shuffled-sequence decoy peptides for a global empirical FDR are the planned Stage-2
-extension.)</p>
-<h2 id="the-correction-that-changed-the-lead">The correction that changed the lead</h2>
-<p>The initial screen nominated five Tier-A families and a lead (281_962_460 × TLR2,
+extension.)</p></section><section class="step" id="s5-the-correction-that-changed-the-lead" data-fig=""><h2 class="stephead">The correction that changed the lead</h2><p>The initial screen nominated five Tier-A families and a lead (281_962_460 × TLR2,
 iPTM 0.91). A provenance audit found <strong>four methodological errors</strong>; correcting them
 changed the lead entirely. This audit is the methodological spine of the project.</p>
 <p><strong>Error 1 — precursor folding inflated the interface.</strong> The screen had folded the full
@@ -136,19 +168,13 @@ by the native partner in an experimental complex (ΔSASA, Shrake–Rupley; 3DI2 
 1J7V IL10RA·IL-10, 3ALQ TNFR2·TNF, 5MZV IL23R·IL-23, 3V4P α4β7, 8H8J GPR35·G-protein). Of
 the top 12, 7 dock accessible surfaces; 3 were down-weighted as occluded — two integrin
 hits target the obligate α4/β7 interface, one GPCR hit targets the intracellular
-G-protein face, both unreachable by a secreted extracellular peptide.</p>
-<h3 id="locus-context-as-an-axis">Locus context as an axis</h3>
-<p>Final ranking order, most-interesting first: <strong>(1) orphan + human-receptor hit +
+G-protein face, both unreachable by a secreted extracellular peptide.</p></section><section class="step" id="s6-locus-context-as-an-axis" data-fig=""><h3 class="stephead">Locus context as an axis</h3><p>Final ranking order, most-interesting first: <strong>(1) orphan + human-receptor hit +
 expressed</strong> (secreted, no local cognate, folds on a human receptor, protein-detected — the
 hero class), then <strong>(2) cognate-bearing + hit + expressed</strong> (dual-function candidate). The
-reranked actionable set is 59 Tier-A/B pairs; the full 297-family table is in <code>results/</code>.</p>
-<h3 id="what-did-not-change">What did not change</h3>
-<p>Engine (ESMFold2-Fast), the frozen 15+10 panel, and the decoy-calibrated gate
+reranked actionable set is 59 Tier-A/B pairs; the full 297-family table is in <code>results/</code>.</p></section><section class="step" id="s7-what-did-not-change" data-fig=""><h3 class="stephead">What did not change</h3><p>Engine (ESMFold2-Fast), the frozen 15+10 panel, and the decoy-calibrated gate
 (iPTM ≥ 0.5, PAE ≤ 15, z ≥ 3) are unchanged through the correction. No datasets or targets
 were added — the correction re-used the frozen panel and the existing GMSC family set. The
-screen remains hypothesis prioritization, not causation.</p>
-<h2 id="results-the-reranked-leads">Results — the reranked leads</h2>
-<p>The corrected screen yields 59 actionable pairs. The top of the orphan +
+screen remains hypothesis prioritization, not causation.</p></section><section class="step" id="s8-results-the-reranked-leads" data-fig=""><h2 class="stephead">Results — the reranked leads</h2><p>The corrected screen yields 59 actionable pairs. The top of the orphan +
 hit + expressed class:</p>
 <table>
 <thead>
@@ -273,9 +299,7 @@ But the <em>other</em> IL7R hits (283_075_895, 268_961_644, 098_551_287, 124_338
 7–14% identity with the MIMIC family and with each other — these are <strong>unrelated peptides
 that independently converge on IL7R</strong>. So the IL7R signal is real on two counts: one family
 recovered reproducibly, and several sequence-unrelated peptides landing on the same
-receptor. We do not claim more than that.</p>
-<h3 id="a-structural-mimic-not-a-sequence-mimic">A structural mimic, not a sequence mimic</h3>
-<p>For each top candidate we ran local Smith–Waterman alignment (BLOSUM62) against the
+receptor. We do not claim more than that.</p></section><section class="step" id="s9-a-structural-mimic-not-a-sequence-mimic" data-fig=""><h3 class="stephead">A structural mimic, not a sequence mimic</h3><p>For each top candidate we ran local Smith–Waterman alignment (BLOSUM62) against the
 receptor's native ligand and against the viral mimics that engage the same receptors
 (EBV/CMV vIL-10, KSHV vIL-6, KSHV vMIP-II), calibrated against a 200-iteration
 shuffled-sequence null. <strong>No candidate shows sequence similarity above chance</strong> (all
@@ -283,16 +307,10 @@ z &lt; 1.2; best 094 × IL-7, z = 1.14, n.s.). This is informative, not disappoi
 interfaces are real, the peptides are <strong>structural mimics</strong> that present a compatible
 surface without descending from the ligand. A BLAST/homology screen would have missed
 them entirely — only a structure screen finds them, and this is precisely the class of
-signal the viral (sequence-homologous) mimics are <em>not</em>.</p>
-<h2 id="mimic-engages-the-il-7-binding-site">MIMIC engages the IL-7 binding site</h2>
-<p>The lead docks the cytokine-binding face of IL7R. Superposed on the IL-7·IL7R crystal (PDB 3DI2), the predicted receptor matches the native structure to 0.6 Å Cα RMSD, and 96% of the peptide backbone lies within 8 Å of the native IL-7 footprint — a 65% overlap of contact residues. The epitope coincides with a cluster of IL7R variants annotated to severe combined immunodeficiency (SCID). MIMIC carries <strong>no</strong> sequence homology to IL-7: this is structural mimicry, independently evolved.</p>
-<p><img alt="Peptide overlays the native IL-7 site on IL7R" src="figures/struct_078_vs_il7.png" /></p>
-<h3 id="it-selects-il-7r-out-of-its-own-receptor-family">It selects IL-7Rα out of its own receptor family</h3>
-<p>The decoy panel asks whether MIMIC is a generic cytokine-receptor sticker; it does not ask
+signal the viral (sequence-homologous) mimics are <em>not</em>.</p></section><section class="step" id="s10-mimic-engages-the-il-7-binding-site" data-fig="s10-mimic-engages-the-il-7-binding-site"><h2 class="stephead">MIMIC engages the IL-7 binding site</h2><p>The lead docks the cytokine-binding face of IL7R. Superposed on the IL-7·IL7R crystal (PDB 3DI2), the predicted receptor matches the native structure to 0.6 Å Cα RMSD, and 96% of the peptide backbone lies within 8 Å of the native IL-7 footprint — a 65% overlap of contact residues. The epitope coincides with a cluster of IL7R variants annotated to severe combined immunodeficiency (SCID). MIMIC carries <strong>no</strong> sequence homology to IL-7: this is structural mimicry, independently evolved.</p></section><section class="step" id="s11-it-selects-il-7r-out-of-its-own-receptor-family" data-fig="s11-it-selects-il-7r-out-of-its-own-receptor-family"><h3 class="stephead">It selects IL-7Rα out of its own receptor family</h3><p>The decoy panel asks whether MIMIC is a generic cytokine-receptor sticker; it does not ask
 the sharper question — does MIMIC pick IL-7Rα out of the γc-cytokine family it belongs to?
 We folded the mature peptide against all six γc-family α-chain ectodomains (IL-7Rα plus
 IL-2Rα, IL-4Rα, IL-15Rα, IL-21R, TSLPR/CRLF2) on the same engine. The answer is clean:</p>
-<p><img alt="MIMIC selects IL-7Rα out of the γc family" src="figures/gammac_specificity.png" /></p>
 <p><strong>IL-7Rα iPTM 0.91 (PAE 7.5 Å); every paralog ≤ 0.28, all with PAE &gt; 22 Å</strong> — no real
 interface on any of the five most structurally similar receptors. A 0.63 iPTM margin over
 the next-best paralog is far stronger evidence of specificity than the fold-matched decoys
@@ -311,10 +329,7 @@ counts any pose it is given, so it does <strong>not</strong> by itself discrimin
 across the paralogs); iPTM/PAE do. (Detail:
 <a href="results/energetics_conservation_analysis.md"><code>results/energetics_conservation_analysis.md</code></a>;
 scores in <a href="results/gammac_specificity_esmfold2.tsv"><code>results/gammac_specificity_esmfold2.tsv</code></a>
-and <a href="results/gammac_af3_crosscheck.tsv"><code>results/gammac_af3_crosscheck.tsv</code></a>.)</p>
-<p><img alt="iPTM discriminates the target; contact ΔG does not; the interface is the conserved surface" src="figures/gammac_energetics_conservation.png" /></p>
-<h2 id="why-il-7-is-the-receptor-that-makes-this-interesting">Why IL-7 is the receptor that makes this interesting</h2>
-<p>The receptor MIMIC docks is not incidental — IL-7 signaling is one of the most
+and <a href="results/gammac_af3_crosscheck.tsv"><code>results/gammac_af3_crosscheck.tsv</code></a>.)</p></section><section class="step" id="s12-why-il-7-is-the-receptor-that-makes-this-interesting" data-fig=""><h2 class="stephead">Why IL-7 is the receptor that makes this interesting</h2><p>The receptor MIMIC docks is not incidental — IL-7 signaling is one of the most
 consequential axes in mucosal immunity, and its biology is what makes a microbial
 antagonist a compelling hypothesis rather than a curiosity.</p>
 <p><strong>IL-7 is the survival signal for T cells.</strong> IL-7 binds IL-7Rα (CD127), which then recruits
@@ -338,12 +353,8 @@ barrier-compromised gut</strong> — inflamed, antibiotic-perturbed, or during <
 colonization — not as a systemic blocker from a healthy lumen. The defensible claim is a
 <strong>local, context-dependent modulator</strong>, not a circulating drug. Two open unknowns bound it:
 the local effective concentration against picomolar IL-7, and proteolytic survival in the
-protease-dense gut (whether MIMIC carries structure-stabilizing features is untested).</p>
-<h2 id="mimic-is-horizontally-mobile">MIMIC is horizontally mobile</h2>
-<p>The peptide's genomic neighborhood is not metabolic — it is a mobile genetic element. Across five recovered genomes, four carry the peptide inside conserved conjugation machinery: a MobT relaxase, a Tcp-family conjugation ATPase, ArdA antirestriction, and a tyrosine recombinase/integrase — the signature of an Integrative and Conjugative Element (ICE). Against a genome-wide null of 592 gut smORF families, MIMIC's neighborhood is the 2nd-most mobile-element-associated (31% vs 2% background; permutation <strong>p = 0.003</strong>). No cognate bacterial receptor is conserved in the neighborhood — the peptide is an orphan signal.</p>
-<p><img alt="The peptide travels inside a conjugative element" src="figures/ice_synteny_078.png" /></p>
+protease-dense gut (whether MIMIC carries structure-stabilizing features is untested).</p></section><section class="step" id="s13-mimic-is-horizontally-mobile" data-fig="s13-mimic-is-horizontally-mobile"><h2 class="stephead">MIMIC is horizontally mobile</h2><p>The peptide's genomic neighborhood is not metabolic — it is a mobile genetic element. Across five recovered genomes, four carry the peptide inside conserved conjugation machinery: a MobT relaxase, a Tcp-family conjugation ATPase, ArdA antirestriction, and a tyrosine recombinase/integrase — the signature of an Integrative and Conjugative Element (ICE). Against a genome-wide null of 592 gut smORF families, MIMIC's neighborhood is the 2nd-most mobile-element-associated (31% vs 2% background; permutation <strong>p = 0.003</strong>). No cognate bacterial receptor is conserved in the neighborhood — the peptide is an orphan signal.</p>
 <p>The homologs span four families in two phyla — <em>Clostridioides difficile</em>, <em>Vescimonas fastidiosa</em>, <em>Anaerostipes hadrus</em> (Bacillota), and <em>Bifidobacterium breve</em> (Actinomycetota). A ~94%-identical peptide shared between Clostridia and Bifidobacterium is not vertical inheritance; it is the signature of recent horizontal transfer.</p>
-<p><img alt="Near-identical across gut commensals and 3 C. difficile strains, cross-phylum" src="figures/msa_078_family_expanded.png" /></p>
 <p><em>Alignment of the MIMIC family across 7 representatives — including three independent</em> C. difficile <em>strains and cross-phylum</em> Bifidobacterium breve<em>: 96% mean conservation, 68 of 74 columns ≥85% identical. The signal peptide (positions 1–29) and the mature secreted 45-mer are both near-invariant.</em></p>
 <p><strong>The family is broad, not a local duplication.</strong> A sensitive MMseqs search of UniProtKB
 (3 iterations) recovers <strong>557 homologs across 239 species and 80 genera</strong> — median 78%
@@ -362,9 +373,7 @@ backbone of a <strong>Tn916/Tcp-type conjugative transposon</strong> — one ICE
 genera, not four independent capture events. The peptide and its transfer apparatus travel
 together, which is the architecture the mobile-shield hypothesis requires. (Detail:
 <a href="results/ice_relatedness_078.md"><code>results/ice_relatedness_078.md</code></a>; this is annotation-level,
-not a full element alignment — a clean next step.)</p>
-<h2 id="the-hypothesis-an-immune-shielding-peptide">The hypothesis: an immune-shielding peptide</h2>
-<p>We propose — as a hypothesis, not a finding — that MIMIC is an <strong>anti-inflammatory /
+not a full element alignment — a clean next step.)</p></section><section class="step" id="s14-the-hypothesis-an-immune-shielding-peptide" data-fig=""><h2 class="stephead">The hypothesis: an immune-shielding peptide</h2><p>We propose — as a hypothesis, not a finding — that MIMIC is an <strong>anti-inflammatory /
 immune-shielding</strong> peptide. Its geometry is ligand-competitive (it occupies the IL-7 binding
 site), which is <em>consistent with</em> an <strong>IL-7 antagonist</strong>: by blunting IL-7-driven lymphocyte
 survival and expansion, it would dampen the host's ability to mount a sustained response
@@ -380,9 +389,7 @@ any gut resident, and the conjugative element spreads it. In a commensal it buys
 coexistence; carried by the mobile element into a pathogen, the same shield aids
 persistence against host defenses. One trait, one vehicle, two consequences.</p>
 <p>This is a hypothesis motivated by structure and genomics, not a demonstrated mechanism.
-The assay below is designed to confirm or kill it.</p>
-<h2 id="why-this-matters">Why this matters</h2>
-<p>Three implications follow, each stated with its hedge.</p>
+The assay below is designed to confirm or kill it.</p></section><section class="step" id="s15-why-this-matters" data-fig=""><h2 class="stephead">Why this matters</h2><p>Three implications follow, each stated with its hedge.</p>
 <p><strong>A new class of signal.</strong> Known microbe→immune-system signals run through metabolites
 (short-chain fatty acids, bile acids) or conserved molecular patterns sensed by
 pattern-recognition receptors (LPS→TLR4). A secreted microbial <em>protein</em> that docks a
@@ -398,9 +405,7 @@ a bacterium can <em>acquire by transfer</em>, not only evolve.</p>
 transposons can hand a pre-evolved immune-evasion tool to a pathogen. The commensal
 majority becomes a reservoir of human-immune-adaptation genes, and mobile elements are
 the conduit into the organisms that harm us.</p>
-<p>These are hypotheses the data motivates, not mechanisms demonstrated. See below.</p>
-<h2 id="go-no-go-the-experiment-that-settles-it">Go / no-go: the experiment that settles it</h2>
-<p>Co-folding reports interface geometry, not function. The decisive test is whether MIMIC
+<p>These are hypotheses the data motivates, not mechanisms demonstrated. See below.</p></section><section class="step" id="s16-go-no-go-the-experiment-that-settles-it" data-fig=""><h2 class="stephead">Go / no-go: the experiment that settles it</h2><p>Co-folding reports interface geometry, not function. The decisive test is whether MIMIC
 binds IL7R and, if so, whether it <strong>blocks</strong> IL-7 (antagonist — our hypothesis) or <strong>mimics</strong>
 it (agonist). Readout throughout: <strong>STAT5 phosphorylation (pSTAT5)</strong> in IL-7-responsive T
 cells — the proximal, quantitative IL-7 signal.</p>
@@ -460,9 +465,7 @@ cells — the proximal, quantitative IL-7 signal.</p>
 </tbody>
 </table>
 <p>Full protocol: <a href="assay_design.md"><code>assay_design.md</code></a>. Both stages are ~a week of bench work
-with off-the-shelf reagents.</p>
-<h2 id="the-evidence-ledger-what-this-supports-and-what-it-cannot-say">The evidence ledger — what this supports, and what it cannot say</h2>
-<p>This is an informatics result. Its value is in prioritizing a hypothesis worth wet-lab
+with off-the-shelf reagents.</p></section><section class="step" id="s17-the-evidence-ledger-what-this-supports-and-what-it-cannot-sa" data-fig=""><h2 class="stephead">The evidence ledger — what this supports, and what it cannot say</h2><p>This is an informatics result. Its value is in prioritizing a hypothesis worth wet-lab
 time, and honesty about the boundary is the point. Every claim, with the evidence for it
 and the experiment that would settle it:</p>
 <table>
@@ -534,9 +537,7 @@ and the experiment that would settle it:</p>
 <p>The through-line: <strong>structure tells us where a peptide could bind and against what null,
 never what it does in a cell.</strong> We have used it to nominate one specific, testable,
 disease-anchored hypothesis out of ~2,000 candidates — and to say exactly which experiment
-would confirm or kill it. That is what the method is for.</p>
-<h3 id="known-limitations-stated-not-buried">Known limitations (stated, not buried)</h3>
-<ul>
+would confirm or kill it. That is what the method is for.</p></section><section class="step" id="s18-known-limitations-stated-not-buried" data-fig=""><h3 class="stephead">Known limitations (stated, not buried)</h3><ul>
 <li><strong>Panel size.</strong> 15 receptors (+10 decoys), below the 50–150 originally scoped. A prior
   analysis found ~46% of peptides prefer some <em>off-panel</em> target — so "hits cluster on IL7R"
   is partly a consequence of what we put in the panel. A genome-wide receptor screen is the
@@ -550,15 +551,11 @@ would confirm or kill it. That is what the method is for.</p>
 <li><strong>Engine.</strong> ESMFold2-Fast (single-sequence) was used for throughput; the lead is being
   cross-folded in a complex-native engine (AF3) to validate the peptide pose.</li>
 </ul>
-<hr />
-<h2 id="repository-layout">Repository layout</h2>
-<pre><code>results/   key tables (reranked candidates, MGE null test, ClinVar co-location, hypothesis map)
+<hr /></section><section class="step" id="s19-repository-layout" data-fig=""><h2 class="stephead">Repository layout</h2><pre><code>results/   key tables (reranked candidates, MGE null test, ClinVar co-location, hypothesis map)
 figures/   structural overlay, ICE synteny, family MSA
 data/      homolog sequences, predicted complex (CIF), superposed all-atom model (PDB)
 src/       analysis scripts
-</code></pre>
-<h3 id="key-result-files">Key result files</h3>
-<table>
+</code></pre></section><section class="step" id="s20-key-result-files" data-fig=""><h3 class="stephead">Key result files</h3><table>
 <thead>
 <tr>
 <th>File</th>
@@ -623,9 +620,7 @@ src/       analysis scripts
 <td>Peptide superposed on the IL-7·IL7R crystal</td>
 </tr>
 </tbody>
-</table>
-<h2 id="reproducibility">Reproducibility</h2>
-<ul>
+</table></section><section class="step" id="s21-reproducibility" data-fig=""><h2 class="stephead">Reproducibility</h2><ul>
 <li><strong>Structure / interface:</strong> ESMFold2-Fast (single-sequence, all-atom; Chan Zuckerberg
   Biohub, MIT). iPTM + interface PAE per pair.</li>
 <li><strong>Signal-peptide cleavage:</strong> SignalP 5.0b, gram± consensus. Mature = post-cleavage.</li>
@@ -640,21 +635,101 @@ src/       analysis scripts
   200-iteration shuffled null.</li>
 </ul>
 <p>Determinism: fixed seeds; tool and model-weight versions logged. Every figure and table
-regenerates from its inputs plus <code>src/</code>. No proprietary data or assets. MIT throughout.</p>
-<h3 id="data-provenance-log-version-access-date-per-source">Data provenance (log version + access date per source)</h3>
-<ul>
+regenerates from its inputs plus <code>src/</code>. No proprietary data or assets. MIT throughout.</p></section><section class="step" id="s22-data-provenance-log-version-access-date-per-source" data-fig=""><h3 class="stephead">Data provenance (log version + access date per source)</h3><ul>
 <li><strong>GMSC</strong> — Global Microbial smORF Catalog (Zenodo v1.1, 10.5281/zenodo.11206513),
   accessed 2026-07.</li>
 <li><strong>Human receptors</strong> — UniProt (sequences), PDB (reference complexes), Open Targets v4,
   Human Protein Atlas 25.1, IUPHAR/Guide to Pharmacology.</li>
 <li><strong>ClinVar variants</strong> — EBI Proteins API (variation endpoint).</li>
 <li>Large intermediate fold matrices are pointers, not committed blobs.</li>
-</ul>
-<h2 id="status">Status</h2>
-<p>Analyses continue to run: a sensitive MMseqs search against UniProtKB will quantify the full breadth of the MIMIC family and its recurrence in other mobile elements. Findings will be updated here.</p>
-<h2 id="acknowledgments">Acknowledgments</h2>
-<p>Structure prediction: ESMFold2 (Chan Zuckerberg Biohub). Peptide catalog: GMSC. Contributors: Kenneth Loi, Zhaojun Wang. Executed with Claude Science.</p>
-<a class="backhome" href="./">← Back to home</a>
+</ul></section><section class="step" id="s23-status" data-fig=""><h2 class="stephead">Status</h2><p>Analyses continue to run: a sensitive MMseqs search against UniProtKB will quantify the full breadth of the MIMIC family and its recurrence in other mobile elements. Findings will be updated here.</p></section><section class="step" id="s24-references" data-fig=""><h2 class="stephead">References</h2><p><em>All entries verified against CrossRef; DOIs resolve to the primary record. Tools are cited for the versions used in this screen (primary engine ESMFold2-Fast; AlphaFold3 as an independent cross-check).</em></p>
+<p><strong>Biological precedent</strong></p>
+<ol>
+<li>Cohen L., Esterhazy D., Kim S., et al. (2017). Commensal bacteria make GPCR ligands that mimic human signalling molecules. <em>Nature</em> <strong>549</strong>:48-53. https://doi.org/10.1038/nature23874</li>
+</ol>
+<p><strong>Peptide catalogs</strong></p>
+<ol start="2">
+<li>Duan Y., Santos-Júnior C., Schmidt T., et al. (2024). A catalog of small proteins from the global microbiome. <em>Nature Communications</em> <strong>15</strong>. https://doi.org/10.1038/s41467-024-51894-6</li>
+<li>Santos-Júnior C., Torres M., Duan Y., et al. (2024). Discovery of antimicrobial peptides in the global microbiome with machine learning. <em>Cell</em> <strong>187</strong>:3761-3778.e16. https://doi.org/10.1016/j.cell.2024.05.013</li>
+</ol>
+<p><strong>Structure &amp; interface prediction</strong></p>
+<ol start="4">
+<li>Lin Z., Akin H., Rao R., et al. (2023). Evolutionary-scale prediction of atomic-level protein structure with a language model. <em>Science</em> <strong>379</strong>:1123-1130. https://doi.org/10.1126/science.ade2574</li>
+<li>Abramson J., Adler J., Dunger J., et al. (2024). Accurate structure prediction of biomolecular interactions with AlphaFold 3. <em>Nature</em> <strong>630</strong>:493-500. https://doi.org/10.1038/s41586-024-07487-w</li>
+<li>Xue L., Rodrigues J., Kastritis P., et al. (2016). PRODIGY: a web server for predicting the binding affinity of protein–protein complexes. <em>Bioinformatics</em> <strong>32</strong>:3676-3678. https://doi.org/10.1093/bioinformatics/btw514</li>
+</ol>
+<p><strong>Target-panel evidence sources</strong></p>
+<ol start="7">
+<li>Ochoa D., Hercules A., Carmona M., et al. (2022). The next-generation Open Targets Platform: reimagined, redesigned, rebuilt. <em>Nucleic Acids Research</em> <strong>51</strong>:D1353-D1359. https://doi.org/10.1093/nar/gkac1046</li>
+<li>Uhlén M., Fagerberg L., Hallström B., et al. (2015). Tissue-based map of the human proteome. <em>Science</em> <strong>347</strong>. https://doi.org/10.1126/science.1260419</li>
+<li>Harding S., Armstrong J., Faccenda E., et al. (2023). The IUPHAR/BPS Guide to PHARMACOLOGY in 2024. <em>Nucleic Acids Research</em> <strong>52</strong>:D1438-D1449. https://doi.org/10.1093/nar/gkad944</li>
+<li>The UniProt Consortium (2022). UniProt: the Universal Protein Knowledgebase in 2023. <em>Nucleic Acids Research</em> <strong>51</strong>:D523-D531. https://doi.org/10.1093/nar/gkac1052</li>
+<li>Berman H. (2000). The Protein Data Bank. <em>Nucleic Acids Research</em> <strong>28</strong>:235-242. https://doi.org/10.1093/nar/28.1.235</li>
+</ol>
+<p><strong>Sequence &amp; signal-peptide tools</strong></p>
+<ol start="12">
+<li>Teufel F., Almagro Armenteros J., Johansen A., et al. (2022). SignalP 6.0 predicts all five types of signal peptides using protein language models. <em>Nature Biotechnology</em> <strong>40</strong>:1023-1025. https://doi.org/10.1038/s41587-021-01156-3</li>
+<li>Steinegger M., Söding J. (2017). MMseqs2 enables sensitive protein sequence searching for the analysis of massive data sets. <em>Nature Biotechnology</em> <strong>35</strong>:1026-1028. https://doi.org/10.1038/nbt.3988</li>
+<li>Buchfink B., Reuter K., Drost H. (2021). Sensitive protein alignments at tree-of-life scale using DIAMOND. <em>Nature Methods</em> <strong>18</strong>:366-368. https://doi.org/10.1038/s41592-021-01101-x</li>
+</ol></section><section class="step" id="s25-acknowledgments" data-fig=""><h2 class="stephead">Acknowledgments</h2><p>Structure prediction: ESMFold2 (Chan Zuckerberg Biohub). Peptide catalog: GMSC. Contributors: Kenneth Loi, Zhaojun Wang. Executed with Claude Science.</p></section>
+  </main>
+  <aside class="rail"><div class="railinner"><div class="railfig" data-for="s10-mimic-engages-the-il-7-binding-site"><figure class="figcard"><img src="figures/struct_078_vs_il7.png" alt="Peptide overlays the native IL-7 site on IL7R" loading="lazy"><figcaption>Peptide overlays the native IL-7 site on IL7R</figcaption></figure></div>
+<div class="railfig" data-for="s11-it-selects-il-7r-out-of-its-own-receptor-family"><figure class="figcard"><img src="figures/gammac_specificity.png" alt="MIMIC selects IL-7Rα out of the γc family" loading="lazy"><figcaption>MIMIC selects IL-7Rα out of the γc family</figcaption></figure>
+<figure class="figcard"><img src="figures/gammac_energetics_conservation.png" alt="iPTM discriminates the target; contact ΔG does not; the interface is the conserved surface" loading="lazy"><figcaption>iPTM discriminates the target; contact ΔG does not; the interface is the conserved surface</figcaption></figure></div>
+<div class="railfig" data-for="s13-mimic-is-horizontally-mobile"><figure class="figcard"><img src="figures/ice_synteny_078.png" alt="The peptide travels inside a conjugative element" loading="lazy"><figcaption>The peptide travels inside a conjugative element</figcaption></figure>
+<figure class="figcard"><img src="figures/msa_078_family_expanded.png" alt="Near-identical across gut commensals and 3 C. difficile strains, cross-phylum" loading="lazy"><figcaption>Near-identical across gut commensals and 3 C. difficile strains, cross-phylum</figcaption></figure></div></div></aside>
 </div>
+<div class="footer">
+  Source &amp; data: <a href="https://github.com/kenloi/mimic-gut-secretome">github.com/kenloi/mimic-gut-secretome</a>
+  · MIT license · Hypothesis prioritization, not a causal claim. ·
+  <a href="./">← Home</a>
+</div>
+<script>
+const steps=[...document.querySelectorAll('.step')];
+const tocLinks=[...document.querySelectorAll('.toc a')];
+const railFigs=[...document.querySelectorAll('.railfig')];
+const railByFor={}; railFigs.forEach(f=>railByFor[f.dataset.for]=f);
+const tocByTarget={}; tocLinks.forEach(a=>tocByTarget[a.dataset.target]=a);
+let lastFig=null;
+function setActive(id){
+  tocLinks.forEach(a=>a.classList.toggle('active',a.dataset.target===id));
+  const step=document.getElementById(id);
+  const figFor=step&&step.dataset.fig? step.dataset.fig : null;
+  if(figFor){ // this section owns a figure -> show it, remember it
+    if(lastFig!==figFor){
+      railFigs.forEach(f=>f.classList.toggle('active',f.dataset.for===figFor));
+      lastFig=figFor;
+    }
+  }else if(lastFig){ // keep last figure pinned through fig-less sections
+    railFigs.forEach(f=>f.classList.toggle('active',f.dataset.for===lastFig));
+  }
+}
+const io=new IntersectionObserver((entries)=>{
+  // pick the entry nearest the top that is intersecting
+  const vis=entries.filter(e=>e.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
+  if(vis.length){ setActive(vis[0].target.id); }
+},{rootMargin:'-15% 0px -70% 0px',threshold:0});
+steps.forEach(s=>io.observe(s));
+// progress bar
+const bar=document.querySelector('.progress');
+function onScroll(){
+  const h=document.documentElement;
+  const p=(h.scrollTop)/(h.scrollHeight-h.clientHeight);
+  bar.style.width=(p*100).toFixed(2)+'%';
+}
+document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+// initialise
+if(steps.length) setActive(steps[0].id);
+// mobile: inline each fig group after its owning section
+function handleMobile(){
+  const mobile=window.matchMedia('(max-width:1080px)').matches;
+  railFigs.forEach(f=>{
+    const owner=document.getElementById(f.dataset.for);
+    if(mobile){ if(owner && f.parentElement.classList.contains('railinner')) owner.after(f); f.classList.add('active'); }
+  });
+}
+handleMobile();
+window.addEventListener('resize',()=>{ /* no reflow back to rail needed for a static page load */ });
+</script>
 </body>
 </html>

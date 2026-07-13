@@ -451,6 +451,40 @@ regenerates from its inputs plus `src/`. No proprietary data or assets. MIT thro
 
 Analyses continue to run: a sensitive MMseqs search against UniProtKB will quantify the full breadth of the MIMIC family and its recurrence in other mobile elements. Findings will be updated here.
 
+## References
+
+_All entries verified against CrossRef; DOIs resolve to the primary record. Tools are cited for the versions used in this screen (primary engine ESMFold2-Fast; AlphaFold3 as an independent cross-check)._
+
+
+**Biological precedent**
+
+1. Cohen L., Esterhazy D., Kim S., et al. (2017). Commensal bacteria make GPCR ligands that mimic human signalling molecules. *Nature* **549**:48-53. https://doi.org/10.1038/nature23874
+
+**Peptide catalogs**
+
+2. Duan Y., Santos-Júnior C., Schmidt T., et al. (2024). A catalog of small proteins from the global microbiome. *Nature Communications* **15**. https://doi.org/10.1038/s41467-024-51894-6
+3. Santos-Júnior C., Torres M., Duan Y., et al. (2024). Discovery of antimicrobial peptides in the global microbiome with machine learning. *Cell* **187**:3761-3778.e16. https://doi.org/10.1016/j.cell.2024.05.013
+
+**Structure & interface prediction**
+
+4. Lin Z., Akin H., Rao R., et al. (2023). Evolutionary-scale prediction of atomic-level protein structure with a language model. *Science* **379**:1123-1130. https://doi.org/10.1126/science.ade2574
+5. Abramson J., Adler J., Dunger J., et al. (2024). Accurate structure prediction of biomolecular interactions with AlphaFold 3. *Nature* **630**:493-500. https://doi.org/10.1038/s41586-024-07487-w
+6. Xue L., Rodrigues J., Kastritis P., et al. (2016). PRODIGY: a web server for predicting the binding affinity of protein–protein complexes. *Bioinformatics* **32**:3676-3678. https://doi.org/10.1093/bioinformatics/btw514
+
+**Target-panel evidence sources**
+
+7. Ochoa D., Hercules A., Carmona M., et al. (2022). The next-generation Open Targets Platform: reimagined, redesigned, rebuilt. *Nucleic Acids Research* **51**:D1353-D1359. https://doi.org/10.1093/nar/gkac1046
+8. Uhlén M., Fagerberg L., Hallström B., et al. (2015). Tissue-based map of the human proteome. *Science* **347**. https://doi.org/10.1126/science.1260419
+9. Harding S., Armstrong J., Faccenda E., et al. (2023). The IUPHAR/BPS Guide to PHARMACOLOGY in 2024. *Nucleic Acids Research* **52**:D1438-D1449. https://doi.org/10.1093/nar/gkad944
+10. The UniProt Consortium (2022). UniProt: the Universal Protein Knowledgebase in 2023. *Nucleic Acids Research* **51**:D523-D531. https://doi.org/10.1093/nar/gkac1052
+11. Berman H. (2000). The Protein Data Bank. *Nucleic Acids Research* **28**:235-242. https://doi.org/10.1093/nar/28.1.235
+
+**Sequence & signal-peptide tools**
+
+12. Teufel F., Almagro Armenteros J., Johansen A., et al. (2022). SignalP 6.0 predicts all five types of signal peptides using protein language models. *Nature Biotechnology* **40**:1023-1025. https://doi.org/10.1038/s41587-021-01156-3
+13. Steinegger M., Söding J. (2017). MMseqs2 enables sensitive protein sequence searching for the analysis of massive data sets. *Nature Biotechnology* **35**:1026-1028. https://doi.org/10.1038/nbt.3988
+14. Buchfink B., Reuter K., Drost H. (2021). Sensitive protein alignments at tree-of-life scale using DIAMOND. *Nature Methods* **18**:366-368. https://doi.org/10.1038/s41592-021-01101-x
+
 ## Acknowledgments
 
 Structure prediction: ESMFold2 (Chan Zuckerberg Biohub). Peptide catalog: GMSC. Contributors: Kenneth Loi, Zhaojun Wang. Executed with Claude Science.
