@@ -24,7 +24,19 @@ a:hover{text-decoration:underline}
 .layout{max-width:1280px;margin:0 auto;padding:0 40px 14vh;
   display:grid;grid-template-columns:minmax(0,1fr) minmax(0,52%);gap:52px;align-items:start}
 /* TOC — hover-reveal fixed overlay (hidden by default, no layout space) */
-.nav-trigger{position:fixed;top:0;left:0;width:14px;height:100vh;z-index:45}
+
+/* CHANGE: top quick-nav strip — short h2 list under the title that melts to the left edge on scroll */
+.toctop{max-width:1280px;margin:0 auto;padding:2px 40px 10px;display:flex;flex-wrap:wrap;gap:5px 8px;
+  align-items:center;font-size:12.5px;
+  transition:opacity .35s ease, transform .35s ease;will-change:opacity,transform}
+.toctop a{color:#8a959a;text-decoration:none;padding:3px 9px;border-radius:999px;border:1px solid transparent;
+  line-height:1.2;white-space:nowrap;transition:color .15s,background .15s,border-color .15s}
+.toctop a:hover{color:var(--ink);background:#f4f1ee;border-color:var(--line)}
+.toctop a.active{color:var(--coral);border-color:rgba(217,119,87,.4);background:rgba(217,119,87,.07);font-weight:600}
+/* melted state: once scrolled past the masthead the strip dissolves toward the left and hides */
+.toctop.melted{opacity:0;transform:translateX(-14px);pointer-events:none}
+
+.nav-trigger{position:fixed;top:0;left:0;width:22px;height:100vh;z-index:45}
 .nav-toggle{position:fixed;top:12px;left:12px;z-index:48;width:38px;height:38px;border-radius:9px;
   border:1px solid var(--line);background:rgba(255,255,255,.94);color:var(--ink);font-size:18px;line-height:1;
   cursor:pointer;box-shadow:0 1px 6px rgba(0,0,0,.12);display:none;align-items:center;justify-content:center}
@@ -116,6 +128,7 @@ a:hover{text-decoration:underline}
 <p><strong>Kenneth Loi, Zhaojun Wang</strong> · Built with Claude Science</p>
 <hr />
 </header>
+<nav class="toctop" aria-label="section quick-nav"><a href="#s0-summary" data-target="s0-summary">Summary</a><a href="#s1-design" data-target="s1-design">Design</a><a href="#s5-the-correction-that-changed-the-lead" data-target="s5-the-correction-that-changed-the-lead">The correction</a><a href="#s8-results-the-reranked-leads" data-target="s8-results-the-reranked-leads">Results</a><a href="#s10-mimic-engages-the-il-7-binding-site" data-target="s10-mimic-engages-the-il-7-binding-site">IL-7 interface</a><a href="#s12-why-il-7-is-the-receptor-that-makes-this-interesting" data-target="s12-why-il-7-is-the-receptor-that-makes-this-interesting">Why IL-7</a><a href="#s13-mimic-is-horizontally-mobile" data-target="s13-mimic-is-horizontally-mobile">Mobility</a><a href="#s14-the-hypothesis-an-immune-shielding-peptide" data-target="s14-the-hypothesis-an-immune-shielding-peptide">Hypothesis</a><a href="#s15-why-this-matters" data-target="s15-why-this-matters">Why it matters</a><a href="#s16-go-no-go-the-experiment-that-settles-it" data-target="s16-go-no-go-the-experiment-that-settles-it">The assay</a><a href="#s17-the-evidence-ledger-what-this-supports-and-what-it-cannot-sa" data-target="s17-the-evidence-ledger-what-this-supports-and-what-it-cannot-sa">Evidence ledger</a><a href="#s19-repository-layout" data-target="s19-repository-layout">Repository</a><a href="#s21-reproducibility" data-target="s21-reproducibility">Reproducibility</a><a href="#s23-status" data-target="s23-status">Status</a><a href="#s24-references" data-target="s24-references">References</a><a href="#s25-acknowledgments" data-target="s25-acknowledgments">Acknowledgments</a></nav>
 <div class="layout">
   <main class="prose">
     <section class="step" id="s0-summary" data-fig=""><h2 class="stephead">Summary</h2><p>The human gut encodes a hundred times more microbial genes than human genes — the body's largest reservoir of coding potential. We have spent a decade reading its output as <em>chemistry</em>: short-chain fatty acids, bile acids, tryptophan metabolites, each mapped to a human receptor. Whether commensals also signal in <em>protein</em> — secreted miniproteins that engage our receptors directly — is essentially unknown. We built a structure-first screen to ask, co-folding ~2,000 gut-secreted miniprotein families against a panel of human immune receptors and sequence-matched decoys, scoring each interface against a null.</p>
@@ -728,7 +741,7 @@ regenerates from its inputs plus <code>src/</code>. No proprietary data or asset
 </div>
 <script>
 const steps=[...document.querySelectorAll('.step')];
-const tocLinks=[...document.querySelectorAll('.toc a')];
+const tocLinks=[...document.querySelectorAll('.toc a, .toctop a')];
 const railFigs=[...document.querySelectorAll('.railfig')];
 const railByFor={}; railFigs.forEach(f=>railByFor[f.dataset.for]=f);
 const tocByTarget={}; tocLinks.forEach(a=>tocByTarget[a.dataset.target]=a);
@@ -760,6 +773,18 @@ function onScroll(){
   bar.style.width=(p*100).toFixed(2)+'%';
 }
 document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+// CHANGE: top quick-nav strip melts to the left edge once you scroll past the masthead.
+const toctop=document.querySelector('.toctop');
+const masthead=document.querySelector('.masthead');
+function updateMelt(){
+  if(!toctop||!masthead) return;
+  const mb=masthead.getBoundingClientRect().bottom;
+  // melt once the masthead has scrolled mostly out of view (its bottom passes ~64px from top)
+  toctop.classList.toggle('melted', mb < 64);
+}
+document.addEventListener('scroll',updateMelt,{passive:true});updateMelt();
+
 // initialise
 if(steps.length) setActive(steps[0].id);
 // mobile: inline each fig group after its owning section
