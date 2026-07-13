@@ -25,14 +25,16 @@ a:hover{text-decoration:underline}
   display:grid;grid-template-columns:minmax(0,1fr) minmax(0,52%);gap:52px;align-items:start}
 /* TOC — hover-reveal fixed overlay (hidden by default, no layout space) */
 
-/* CHANGE: top quick-nav strip — short h2 list under the title that melts to the left edge on scroll */
-.toctop{max-width:1280px;margin:0 auto;padding:2px 40px 10px;display:flex;flex-wrap:wrap;gap:5px 8px;
-  align-items:center;font-size:12.5px;
+/* top quick-nav strip — restrained journal-style running index under the title */
+.toctop{max-width:1280px;margin:0 auto;padding:6px 40px 14px;display:flex;flex-wrap:wrap;
+  align-items:baseline;gap:2px 0;font-size:11.5px;letter-spacing:.04em;
+  border-bottom:1px solid var(--line);
   transition:opacity .35s ease, transform .35s ease;will-change:opacity,transform}
-.toctop a{color:#8a959a;text-decoration:none;padding:3px 9px;border-radius:999px;border:1px solid transparent;
-  line-height:1.2;white-space:nowrap;transition:color .15s,background .15s,border-color .15s}
-.toctop a:hover{color:var(--ink);background:#f4f1ee;border-color:var(--line)}
-.toctop a.active{color:var(--coral);border-color:rgba(217,119,87,.4);background:rgba(217,119,87,.07);font-weight:600}
+.toctop a{color:#7c878c;text-decoration:none;padding:2px 0;line-height:1.5;white-space:nowrap;
+  border-bottom:1px solid transparent;transition:color .15s,border-color .15s}
+.toctop a:not(:last-child)::after{content:"·";color:#c4ccce;margin:0 10px;font-weight:400}
+.toctop a:hover{color:var(--ink);border-bottom-color:var(--coral)}
+.toctop a.active{color:var(--coral);font-weight:600}
 /* melted state: once scrolled past the masthead the strip dissolves toward the left and hides */
 .toctop.melted{opacity:0;transform:translateX(-14px);pointer-events:none}
 
