@@ -178,6 +178,22 @@ The lead docks the cytokine-binding face of IL7R. Superposed on the IL-7·IL7R c
 
 ![Peptide overlays the native IL-7 site on IL7R](figures/struct_078_vs_il7.png)
 
+### It selects IL-7Rα out of its own receptor family
+
+The decoy panel asks whether MIMIC is a generic cytokine-receptor sticker; it does not ask
+the sharper question — does MIMIC pick IL-7Rα out of the γc-cytokine family it belongs to?
+We folded the mature peptide against all six γc-family α-chain ectodomains (IL-7Rα plus
+IL-2Rα, IL-4Rα, IL-15Rα, IL-21R, TSLPR/CRLF2) on the same engine. The answer is clean:
+
+![MIMIC selects IL-7Rα out of the γc family](figures/gammac_specificity.png)
+
+**IL-7Rα iPTM 0.91 (PAE 7.5 Å); every paralog ≤ 0.28, all with PAE > 22 Å** — no real
+interface on any of the five most structurally similar receptors. A 0.63 iPTM margin over
+the next-best paralog is far stronger evidence of specificity than the fold-matched decoys
+can give: MIMIC does not stick to cytokine-receptor grooves in general, it selects this one.
+(Scores: [`results/gammac_specificity_esmfold2.tsv`](results/gammac_specificity_esmfold2.tsv).
+An independent AlphaFold3 cross-check of the same six pairs is in progress.)
+
 ## Why IL-7 is the receptor that makes this interesting
 
 The receptor MIMIC docks is not incidental — IL-7 signaling is one of the most
@@ -330,6 +346,7 @@ and the experiment that would settle it:
 |---|---|---|---|
 | MIMIC's predicted interface sits on the IL-7 site of IL7R | 65% contact-residue overlap; 96% of peptide backbone within 8 Å of the native IL-7 footprint; 0.6 Å receptor RMSD to crystal 3DI2 | that binding *occurs* — this is a model, not a measurement | BLI/SPR binding (Assay 1) |
 | It is a structural, not sequence, mimic | Smith–Waterman vs IL-7 and viral mimics all n.s. (z < 1.2 vs shuffled null) | nothing to soften — this one is a clean negative | already settled |
+| It is *specific* to IL-7Rα, not a generic cytokine-receptor binder | folds IL-7Rα at 0.91 vs ≤ 0.28 for all 5 γc paralogs (same engine) | single-engine prediction, not a binding assay | AF3 cross-check (in progress) + SPR against paralogs |
 | It is an antagonist / immune shield | ligand-competitive geometry; IL-7 biology makes blockade the coherent story | co-folding gives geometry, **not direction** — agonist is not excluded | pSTAT5 ±IL-7 (Assay 2, Arm B) |
 | It rides a mobile element | 4/5 loci in ICE synteny; 41% of 557 homologs annotated transfer-related; enrichment p = 0.003 (#2 of 592) | that the element is *currently* mobilizing between these species | conjugation assay / long-read MGE tracking |
 | It is a route into pathogens | 15 independent *C. difficile* homologs carry it | that transfer *to* the pathogen happened via this element specifically | strain-resolved phylogenetics of the element |
@@ -346,9 +363,10 @@ would confirm or kill it. That is what the method is for.
   analysis found ~46% of peptides prefer some *off-panel* target — so "hits cluster on IL7R"
   is partly a consequence of what we put in the panel. A genome-wide receptor screen is the
   natural next step.
-- **γc-family specificity.** The decoys (EPOR, GHR) test whether MIMIC is a generic
-  cytokine-receptor sticker — they do **not** test whether it picks IL-7Rα out of its own γc
-  family (IL-2Rα/IL-4Rα/IL-15Rα/IL-21R/TSLPR). That paralog-specificity fold is running.
+- **γc-family specificity — addressed.** The paralog fold is done (see above): MIMIC selects
+  IL-7Rα (0.91) over all five γc paralogs (≤ 0.28). An AF3 cross-check of the same set is in
+  progress. This closes what was the main specificity gap; the residual caveat is that it is
+  still a single-engine structural prediction, not a binding measurement.
 - **Empirical FDR.** Hits are decoy-*receptor* calibrated (per-peptide z vs 10 decoys). The
   shuffled-*peptide* null that would give a global empirical FDR is not yet run; z is a
   thin-tail estimate from n = 10.
@@ -372,6 +390,7 @@ src/       analysis scripts
 | `results/reranked_candidate_table.tsv` | Mature-form reranked candidates (iPTM, PAE, z, occlusion, expression) |
 | `results/reranked_candidates_full.tsv` | All 297 mature-refolded families (full screen) |
 | `results/mmseqs_breadth_078.tsv` | 557 MIMIC-family homologs across 239 species (breadth + taxonomy) |
+| `results/gammac_specificity_esmfold2.tsv` | MIMIC vs 6 γc-family receptors — IL-7Rα 0.91 vs paralogs ≤0.28 |
 | `results/mge_enrichment_null.tsv` | Mobile-element enrichment vs 592-family permutation null (p = 0.003) |
 | `results/mge_context_078.tsv` | Per-locus ICE annotation across 5 genomes |
 | `results/clinvar_finding_078.tsv` | IL7R disease-variant co-location at the epitope |
