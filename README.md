@@ -232,6 +232,15 @@ independent *Clostridioides difficile* strains**, plus *Enterococcus* and *Strep
 The *C. difficile* signal is not one genome; it is fifteen. (Full hit table:
 [`results/mmseqs_breadth_078.tsv`](results/mmseqs_breadth_078.tsv).)
 
+**The vehicle is conserved, not just the cargo.** The four mobile loci don't merely each sit
+near "some" mobile genes — they share the same machinery: conjugative transfer proteins
+(**Tcp**) and anti-restriction (**ArdA**) in all four, with MobT relaxase in two. That is the
+backbone of a **Tn916/Tcp-type conjugative transposon** — one ICE family carried across
+genera, not four independent capture events. The peptide and its transfer apparatus travel
+together, which is the architecture the mobile-shield hypothesis requires. (Detail:
+[`results/ice_relatedness_078.md`](results/ice_relatedness_078.md); this is annotation-level,
+not a full element alignment — a clean next step.)
+
 ## The hypothesis: an immune-shielding peptide
 
 We propose — as a hypothesis, not a finding — that MIMIC is an **anti-inflammatory /
