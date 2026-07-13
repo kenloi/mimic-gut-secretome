@@ -1,0 +1,11 @@
+	value
+candidate	078_038_456 × IL7R
+epitope_size	20
+overlap_with_experimental_IL7_site	13/20 (65%)  [vs 3DI2 crystal]
+clinvar_variants_in_epitope	11 residues
+pathogenic_LP_in_epitope	4 (pos 77,79,212,214)
+VUS_in_epitope	8
+disease_association	Immunodeficiency 104 (T-B+NK+ SCID, IL7R deficiency)
+permutation_enrichment_p_VUS	0.115
+permutation_enrichment_p_path	0.485
+honest_interpretation	epitope is NOT statistically enriched vs ectodomain background (receptor is 44% ClinVar-saturated), BUT coincides with the functional IL-7 interface and a SCID variant cluster

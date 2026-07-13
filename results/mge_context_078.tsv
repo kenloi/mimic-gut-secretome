@@ -1,0 +1,6 @@
+locus	n_cds	n_mge	mge_frac	signature
+MBH7027273.1_JADVQD010000009.1_91200_127454	32	11	0.34	ICE (integrase+excisionase+IS3+ArdA+Tcp)
+WP_005428625.1_NZ_AP023415.1_497_36721	40	7	0.18	ICE (MobT relaxase+Tcp+ArdA+recombinase)
+WP_052829451.1_NZ_AWFS01000010.1_69835_106059	35	0	0.0	no MGE (chromosomal)
+WP_055258568.1_NZ_CYXT01000010.1_1_29015	35	7	0.2	ICE (Tcp+ArdA+recombinase)
+WP_131022233.1_NZ_BIQV01000009.1_28373_64609	41	8	0.2	ICE (MobT relaxase+Tcp+ArdA+Tyr-recombinase)

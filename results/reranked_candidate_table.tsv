@@ -1,0 +1,60 @@
+rank	peptide_family	best_receptor	mature_iptm	iface_pae	decoy_z	tier	metaP	metaT	locus_context	interest_class	stage1_tier	stage1_iptm	pep_len	occlusion	occ_frac	accessibility
+1	078_038_456	IL7R	0.911	7.41	5.986773654721314	A	0.6438356164383562	4	orphan (no cognate)	orphan + hit + expressed			74	ligand-competitive: docks at cytokine site (accessible on free receptor; would compete)	0.6	PASS (accessible)
+2	283_075_895	IL7R	0.814	11.86	4.941714242294802	A	0.2162162162162162	28	orphan (no cognate)	orphan + hit + expressed	B_moderate	0.647	74	novel-epitope: docks away from cytokine site (accessible; allosteric/novel)	0.0	PASS (accessible)
+3	269_289_576	TNFRSF1B	0.796	13.41	6.575822388678365	A	0.1851851851851852	9	orphan (no cognate)	orphan + hit + expressed			90	novel-epitope: docks away from cytokine site (accessible; allosteric/novel)	0.0	PASS (accessible)
+4	268_980_410	IL10RA	0.739	12.13	10.007380404157926	A	0.1413043478260869	13	orphan (no cognate)	orphan + hit + expressed			98	novel-epitope: docks away from cytokine site (accessible; allosteric/novel)	0.0	PASS (accessible)
+5	268_961_644	IL7R	0.657	13.02	4.670049234795599	A	0.6	97	orphan (no cognate)	orphan + hit + expressed			95	ligand-competitive: docks at cytokine site (accessible on free receptor; would compete)	0.76	PASS (accessible)
+6	093_326_021	ITGB7	0.819	19.17	7.888282504093517	B	0.9466666666666668	42	orphan (no cognate)	orphan + hit + expressed	B_moderate	0.726	75	OCCLUDED: footprint on obligate α4/β7 dimer interface (buried in native integrin)	0.73	FAIL (occluded)
+7	135_351_865	ITGA4	0.751	20.89	6.989969159100526	B	0.25	18	orphan (no cognate)	orphan + hit + expressed			80	OCCLUDED: footprint on obligate α4/β7 dimer interface (buried in native integrin)	0.8	FAIL (occluded)
+8	246_552_641	TLR2	0.671	18.57	15.364823083448236	B	0.2637362637362637	10	orphan (no cognate)	orphan + hit + expressed			91	no bound-partner structure (TLR2 needs TLR1/6 heterodimer)		untestable
+9	124_338_945	IL7R	0.629	16.68	7.0729935532321635	B	0.348314606741573	77	orphan (no cognate)	orphan + hit + expressed			89	novel-epitope: docks away from cytokine site (accessible; allosteric/novel)	0.0	PASS (accessible)
+10	246_552_642	TLR2	0.6	20.07	10.550968210424829	B	0.6352941176470588	6	orphan (no cognate)	orphan + hit + expressed			93	no bound-partner structure (TLR2 needs TLR1/6 heterodimer)		untestable
+11	272_349_164	IL23R	0.577	28.38	4.482160919821102	B	0.1666666666666666	2	orphan (no cognate)	orphan + hit + expressed			96	novel-epitope: docks away from cytokine site (accessible; allosteric/novel)	0.0	PASS (accessible)
+12	271_056_674	GPR35	0.557	17.75	3.864189722633536	B	0.1904761904761904	2	orphan (no cognate)	orphan + hit + expressed			79	intracellular face: overlaps G-protein site (cytoplasmic; implausible for secreted peptide)	0.77	FAIL (occluded)
+13	272_147_215	IL6R	0.798	13.43	4.500193709176574	A	0.0	85	orphan (no cognate)	orphan + hit			68			not tested
+14	240_770_555	IL7R	0.631	14.63	3.1384534595510813	A	0.0	22	orphan (no cognate)	orphan + hit			70			not tested
+15	278_855_146	ITGB7	0.808	18.48	5.484061352463169	B	0.0	3	orphan (no cognate)	orphan + hit			96			not tested
+16	281_962_460	GPR35	0.782	26.21	3.546425528991701	B	0.0	2	orphan (no cognate)	orphan + hit	A_strong	0.913	83			not tested
+17	280_537_061	IL23R	0.625	19.94	5.116178202251091	B	0.0	2	orphan (no cognate)	orphan + hit			94			not tested
+18	285_247_805	CCR6	0.612	16.35	4.28411372454384	B	0.0	2	orphan (no cognate)	orphan + hit	A_strong	0.653	72			not tested
+19	275_891_730	FPR2	0.597	16.6	3.9355754324473406	B	0.0	6	orphan (no cognate)	orphan + hit			85			not tested
+20	081_875_338	FPR2	0.573	25.65	5.3621134773823345	B	0.0	6	orphan (no cognate)	orphan + hit			95			not tested
+21	168_698_137	ITGA4	0.535	24.95	4.278808990419627	B	0.0	10	orphan (no cognate)	orphan + hit			86			not tested
+22	269_063_394	IL23R	0.53	20.35	3.0421764196504006	B	0.0	9	orphan (no cognate)	orphan + hit			93			not tested
+23	277_273_517	FPR2	0.523	23.25	3.332128467632342	B	0.0	3	orphan (no cognate)	orphan + hit			83			not tested
+24	139_277_837	ITGA4	0.502	24.87	3.922657950376614	B	0.0	46	orphan (no cognate)	orphan + hit			80			not tested
+25	078_038_499	IL7R	0.909	7.48	8.250520336121241	A	0.7162162162162162	3	dual (human+bacterial cognate)	hit + expressed			74			not tested
+26	083_643_341	IL7R	0.886	7.83	7.564712981485634	A	0.6621621621621622	5	dual (human+bacterial cognate)	hit + expressed			74			not tested
+27	088_575_073	IL6R	0.834	13.13	14.598503672535958	A	0.3666666666666667	12	dual (human+bacterial cognate)	hit + expressed			98			not tested
+28	098_551_287	IL7R	0.815	9.87	4.934842868304404	A	0.8360655737704918	77	dual (human+bacterial cognate)	hit + expressed			61			not tested
+29	092_027_758	ITGA4	0.839	19.08	3.2649957559124445	B	0.4594594594594594	108	dual (human+bacterial cognate)	hit + expressed	B_moderate	0.607	67			not tested
+30	269_862_617	ITGA4	0.76	20.35	4.764664461178371	B	0.7101449275362319	8	dual (human+bacterial cognate)	hit + expressed			69			not tested
+31	256_111_285	ITGA4	0.738	20.76	5.840702317205889	B	0.651685393258427	85	dual (human+bacterial cognate)	hit + expressed			85			not tested
+32	088_302_242	ITGA4	0.731	21.35	5.57022031283338	B	0.5463917525773196	21	dual (human+bacterial cognate)	hit + expressed			99			not tested
+33	260_316_781	ITGB7	0.649	28.71	10.226721328503691	B	0.4285714285714286	43	dual (human+bacterial cognate)	hit + expressed			84			not tested
+34	245_237_412	IL23R	0.646	16.44	3.0290636423179382	B	0.7191011235955056	35	dual (human+bacterial cognate)	hit + expressed			93			not tested
+35	277_250_540	EGFR	0.643	20.65	8.108313894888997	B	0.3333333333333333	37	dual (human+bacterial cognate)	hit + expressed			75			not tested
+36	114_947_827	FPR1	0.636	20.86	3.642017763129413	B	0.5280898876404494	41	dual (human+bacterial cognate)	hit + expressed			92			not tested
+37	090_963_852	ITGA4	0.624	22.74	4.542044170060873	B	0.4385964912280702	35	dual (human+bacterial cognate)	hit + expressed			61			not tested
+38	190_194_445	IL10RA	0.598	16.17	4.951446454290396	B	0.5625	42	dual (human+bacterial cognate)	hit + expressed			46			not tested
+39	281_056_366	IL23R	0.559	19.19	5.872203842072522	B	0.1594202898550725	2	dual (human+bacterial cognate)	hit + expressed			69			not tested
+40	134_146_546	TLR2	0.551	17.7	3.2457656515488926	B	0.7027027027027026	4	dual (human+bacterial cognate)	hit + expressed			76			not tested
+41	090_564_110	ITGA4	0.531	24.03	5.004269240248548	B	0.5441176470588236	11	dual (human+bacterial cognate)	hit + expressed			75			not tested
+42	092_864_392	ITGB7	0.528	24.31	3.21188367602286	B	0.505050505050505	124	dual (human+bacterial cognate)	hit + expressed			90			not tested
+43	283_565_010	CCR6	0.525	17.8	3.999050119269476	B	0.4239130434782608	2	dual (human+bacterial cognate)	hit + expressed			92			not tested
+44	281_176_060	FPR1	0.518	19.72	6.849558904734693	B	0.8222222222222222	13	dual (human+bacterial cognate)	hit + expressed			97			not tested
+45	281_881_967	GLP1R	0.504	20.93	4.957503703546463	B	0.4024390243902439	20	dual (human+bacterial cognate)	hit + expressed			82			not tested
+46	096_452_670	GLP1R	0.503	16.64	3.9859883115537262	B	0.4285714285714286	9	dual (human+bacterial cognate)	hit + expressed			65			not tested
+47	270_626_999	GLP1R	0.752	15.25	5.746318657718148	B	0.0	11	dual (human+bacterial cognate)	hit only			92			not tested
+48	277_105_094	IL10RA	0.717	24.3	7.0876647504962875	B	0.0	2	dual (human+bacterial cognate)	hit only			95			not tested
+49	283_084_604	IL7R	0.668	17.44	5.874446232712787	B	0.0	15	dual (human+bacterial cognate)	hit only			99			not tested
+50	277_357_125	TLR2	0.65	16.24	7.973550856335791	B	0.0	0	dual (human+bacterial cognate)	hit only			74			not tested
+51	278_856_901	CCR6	0.623	16.08	7.565763829043401	B	0.0	0	dual (human+bacterial cognate)	hit only			80			not tested
+52	262_901_816	IL10RA	0.582	22.36	3.1417828927930014	B	0.0	12	dual (human+bacterial cognate)	hit only			93			not tested
+53	101_507_864	IL6R	0.577	19.86	5.250272732779031	B	0.0	0	dual (human+bacterial cognate)	hit only			56			not tested
+54	284_925_805	TLR2	0.559	23.59	3.342880402760703	B	0.0	8	dual (human+bacterial cognate)	hit only			77			not tested
+55	279_286_341	IL7R	0.527	21.13	3.1696685667178803	B	0.0	9	dual (human+bacterial cognate)	hit only			79			not tested
+56	279_680_123	ITGA4	0.526	26.93	3.4157146127138702	B	0.0	8	dual (human+bacterial cognate)	hit only			92			not tested
+57	271_737_221	TLR2	0.519	25.05	3.5172570612250325	B	0.0	17	dual (human+bacterial cognate)	hit only			58			not tested
+58	279_947_157	TLR2	0.516	22.2	3.5330502409477123	B	0.0	14	dual (human+bacterial cognate)	hit only			97			not tested
+59	278_055_784	ITGA4	0.513	26.95	3.2727380345259323	B	0.0	3	dual (human+bacterial cognate)	hit only			92			not tested

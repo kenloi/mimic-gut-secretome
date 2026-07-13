@@ -1,0 +1,9 @@
+axis	ANTAGONIST hypothesis (immune evasion)	AGONIST hypothesis (IL-7 mimetic)
+What the peptide does at IL7R	Occupies the IL-7 site and BLOCKS IL-7 (competitive antagonist)	Occupies the IL-7 site and TRIGGERS signaling (agonist / IL-7 mimetic)
+Downstream signal (STAT5)	IL-7 -> STAT5 signaling DOWN	STAT5 signaling UP (IL-7-like)
+Effect on host lymphocytes	Fewer/less-active T & B cells locally; dampened surveillance	Expanded/maintained T & B cells; enhanced surveillance
+Why it helps the microbe	Immune EVASION: quiet the local adaptive response, avoid clearance (fits commensal persistence)	Harder to rationalize: why boost the immune system that targets you? (unless niche-engineering / tolerance)
+Epithelial axis (IL-7 also tunes IEC + microbiota)	Blocking IL-7/IL7R alters barrier + microbiota; documented to change colitis susceptibility	Reinforcing IL-7 could support barrier homeostasis / a 'good-tenant' signal
+Precedent	Cytokine-blocking is the common microbial/viral immune-evasion tactic	Engineered non-homologous IL-7R peptide AGONISTS exist (PMC10597491) - proves an agonist peptide is possible
+Structural expectation	Competitive occupancy alone; no need to recreate IL-7's productive geometry	Must also recreate the receptor-dimerizing / productive conformation - a higher bar
+Decisive experiment	STAT5-phosphorylation assay +/- IL-7: antagonist SUPPRESSES IL-7-driven pSTAT5	Same assay: agonist DRIVES pSTAT5 without IL-7

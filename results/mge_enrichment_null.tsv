@@ -1,0 +1,11 @@
+metric	value
+078 MGE-neighbor fraction	0.314 (11/35 products)
+background mean (592 gut smORF families)	0.020
+background median	0.000
+background 95th percentile	0.103
+078 percentile rank	99.7% (#2 of 592)
+empirical p-value	0.0034
+per-locus reproducibility	4/5 independent genomes ICE-associated
+ICE signature	MobT relaxase + TcpF conjugation ATPase + ArdA antirestriction + Tyr-recombinase/integrase
+specificity	other gate-passing candidates at background (p=1.0); 078 is distinct
+interpretation	078 is genuine ICE cargo, HGT-mobile across gut commensals; enrichment is statistically supported and lead-specific
