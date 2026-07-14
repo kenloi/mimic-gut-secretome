@@ -43,8 +43,7 @@ competition assay. The full argument, figures, and evidence ledger are in the mi
 | Resource | Where |
 |---|---|
 | **Full mini-paper** (the science, all figures, evidence ledger) | [paper.html](https://kenloi.github.io/mimic-gut-secretome/paper.html) |
-| **Interactive deck** (3-min demo, live 3D structure of MIMIC on IL-7Rα) | [deck.html](https://kenloi.github.io/mimic-gut-secretome/deck.html) |
-| **Full research talk** (23-slide PI version — methods, null model, audit, specificity) | [talk.html](https://kenloi.github.io/mimic-gut-secretome/talk.html) |
+| **Interactive deck** (live, manipulable 3D structure of MIMIC on IL-7Rα) | [deck.html](https://kenloi.github.io/mimic-gut-secretome/deck.html) |
 | **Co-fold database browser** (all 7,408 interfaces) | [cofold_browser.html](https://kenloi.github.io/mimic-gut-secretome/cofold_browser.html) |
 | **3-min demo video** (2:50, with narration) | [`media/mimic_demo_video.mp4`](media/mimic_demo_video.mp4) |
 | Ranked candidate families (297) | [`results/reranked_candidates_full.tsv`](results/reranked_candidates_full.tsv) |
