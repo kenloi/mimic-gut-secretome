@@ -3,7 +3,7 @@
 ### Kenneth Loi, Zhaojun Wang
 
 **Delivery:** ~150 wpm. `/` = breath. `(click)` = advance one on-slide animation. Let the slides carry the visuals — speak the claim, not the picture. Backup slide is Q&A, not spoken.
-**Timing:** 9 spoken slides ≈ 2:07 of pure narration (318 words @150 wpm) — the pauses, the three S5 structure clicks, and the S8 assay reveal fill the rest of the 3:00 slot. Comfortable at a natural, unhurried pace; no cuts needed. Protect S4–S8.
+**Timing:** 9 spoken slides ≈ 2:19 of pure narration (349 words @150 wpm) — the pauses, the three S5 structure clicks, and the S8 assay reveal fill the rest of the 3:00 slot. Comfortable at a natural, unhurried pace; no cuts needed. Protect S4–S8.
 **Before recording:** S4 shows **7,408 of 7,425**. Say "seven thousand four hundred eight" — the "of 7,425" is on the slide.
 
 ---
@@ -21,10 +21,10 @@ We coevolved with these microbes. / They already signal to us in *chemistry* —
 We screened by structure. / A billion microbial small-ORFs, four filters, down to two thousand families — / co-folded against fifteen human receptors and ten decoys. / The turn: our first hit scored the *precursor*, not the secreted form. / A human caught it; with Claude Science we re-derived every *mature* peptide, refolded the shortlist in one session, and reranked. / That surfaced our lead. *(0:27)*
 
 **[S5 · A gut peptide lands on the IL-7 site — PROTECT · staged structure]**
-The lead sits on **IL-7Rα**. / *(click)* the SCID immune-deficiency residues / *(click)* native IL-7 / *(click)* and our peptide — same surface, sixty-five percent overlap. / Honestly: this is *co-location* with the functional interface, not enrichment. *(0:21)*
+The lead sits on **IL-7Rα** — the receptor for the cytokine that keeps our T cells alive; lose it and you lose adaptive immunity. / So watch what lands in its groove: / *(click)* the residues where immune-deficiency mutations cluster / *(click)* the natural cytokine, IL-7 / *(click)* and our gut peptide — the same surface. / Honestly: this is *co-location* with the functional interface, not enrichment. *(0:23)*
 
 **[S6 · It picks IL-7Rα out of its own family — PROTECT]**
-Not a generic sticker. / Against the five receptors most like IL-7Rα — its own γc family — / MIMIC scores point-nine-one on target, point-two-eight or less on every paralog. / AlphaFold3 agrees. Two engines, one answer. *(0:19)*
+And it is picky. / We put it against the five receptors most like IL-7Rα — its own family — / and only the real target lights up; every look-alike stays dark. / AlphaFold3 agrees independently. Two engines, one answer. *(0:14)*
 
 **[S7 · It rides a mobile element into a pathogen — PROTECT]**
 And it's mobile. / The peptide rides a conjugative element across two hundred thirty-nine gut species — / enrichment p equals nought-point-nought-nought-three — / including fifteen strains of *Clostridioides difficile*, a colitis pathogen. *(0:20)*
@@ -38,7 +38,7 @@ MIMIC is one peptide. / The gut may encode a whole *library* of human-receptor l
 *(Backup — "Six independent lines of evidence" — leave up for Q&A; do not narrate. "Every panel is computational; none measures binding.")*
 
 ---
-**Timing (verified against this file):** 9 spoken slides = **318 words ≈ 2:07** of pure narration at 150 wpm — deliberately under-filled so the structure clicks (S5), the assay reveal (S8), and natural pauses land you near 3:00 without rushing. Dropping **S2** removes 20 words if you need buffer. Slow down rather than pad.
+**Timing (verified against this file):** 9 spoken slides = **349 words ≈ 2:19** of pure narration at 150 wpm — deliberately under-filled so the structure clicks (S5), the assay reveal (S8), and natural pauses land you near 3:00 without rushing. Dropping **S2** removes 20 words if you need buffer. Slow down rather than pad.
 
 **Number consistency:** S4 shows **7,408 of 7,425** — 7,408 mature interfaces refolded, one family folded partially. Say "seven thousand four hundred eight." Voice, slide, paper, and browser agree.
 
