@@ -26,7 +26,7 @@ microbial genes actually *do*? / The metabolites are mapped — the secreted *pr
 So we screened by structure. / From nearly a billion microbial small-ORFs / down through four filters — gut, secreted,
 high-quality, family-collapsed — / to two thousand candidate families. / We co-folded them against twenty-five human
 fold-targets: fifteen immune, cytokine and barrier receptors, / plus ten sequence-matched decoys — every hit has to beat
-a null. / *(click)* And here is the turn: our first hit scored the *precursor*, not the secreted form. / A human caught
+a null. / And here is the turn: our first hit scored the *precursor*, not the secreted form. / A human caught
 it — / and with Claude Science we re-derived every mature peptide, refolded the whole shortlist in one session, and
 reranked it. / That correction surfaced our lead. *(0:34)*
 
@@ -76,5 +76,6 @@ needed. Voice, slide, paper, and browser now agree.
 **Pronunciation:** *Clostridioides difficile* — "klos-TRID-ee-OY-deez dif-uh-SEEL." On S8, say the acronym letters with
 a half-beat so **I**mmuno + **M**odulatory reads as one word, not a stutter.
 
-**Animation cues:** S3 has one click (the open question). S4 has one click (the Claude turning-point). S5 has three
-clicks (SCID residues → native IL-7 → MIMIC). S8 has one click (the pSTAT5 test strip). All other slides are static.
+**Animation cues:** S3 has one click (the open question). S5 has three clicks (SCID residues → native IL-7 → MIMIC).
+S8 has one click (the pSTAT5 test strip). S4 is static — the Claude turning-point is spoken, not shown as an on-slide
+box (kept out of the deck by design; the full trail lives in the paper). All other slides are static.
