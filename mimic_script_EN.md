@@ -2,80 +2,46 @@
 ### For the current 9-slide `deck.html` (9 numbered + 1 backup) · Research Track, Built with Claude: Life Sciences
 ### Kenneth Loi, Zhaojun Wang
 
-**Delivery:** ~150 wpm. `/` = breath. Bracketed = slide + action. `(click)` = advance one on-slide animation. The backup slide is a Q&A slide — not spoken.
-**Timing:** all 9 spoken slides ≈ 3:25 (513 words @150 wpm). Cutting **S2** → ~3:13; to land firmly under 3:00, cut **S2** and lift the pace to ~165 wpm — see the Timing note. Never cut S4–S8.
-**Before recording:** the deck S4 shows **7,408 of 7,425** (one family folded partially). Say "seven thousand four hundred eight"; the "of 7,425" is on the slide and needs no spoken reconcile.
+**Delivery:** ~150 wpm. `/` = breath. `(click)` = advance one on-slide animation. Let the slides carry the visuals — speak the claim, not the picture. Backup slide is Q&A, not spoken.
+**Timing:** 9 spoken slides ≈ 2:07 of pure narration (318 words @150 wpm) — the pauses, the three S5 structure clicks, and the S8 assay reveal fill the rest of the 3:00 slot. Comfortable at a natural, unhurried pace; no cuts needed. Protect S4–S8.
+**Before recording:** S4 shows **7,408 of 7,425**. Say "seven thousand four hundred eight" — the "of 7,425" is on the slide.
 
 ---
 
 **[S1 · Title — "Listen to your gut"]**
-Your gut carries a hundred times more microbial genes than human genes — / the largest reservoir of coding potential
-in your body, / and most of what it does to you, we have never read. *(0:14)*
+Your gut carries a hundred times more microbial genes than human genes — / and most of what they do to us, we have never read. *(0:10)*
 
-**[S2 · Microbial genes outnumber ours 100 to 1 — cut to hit 3:00]**
-The cell counts are about even — the old ten-to-one ratio is a myth. / It is the *genes* that run a hundred to one: /
-three million microbial against twenty thousand of ours. *(0:10)*
+**[S2 · Genes outnumber ours 100 to 1 — optional cut]**
+Not cells — the ten-to-one cell ratio is a myth. / It's the *genes*: three million microbial against twenty thousand of ours. *(0:09)*
 
-**[S3 · We coevolved — and microbes already signal to us]**
-We did not just accumulate these microbes; we coevolved with them. / They tune our immunity, our barrier, our
-metabolism — / and they already do it with *chemistry*: short-chain fatty acids, bile acids, tryptophan, / and some of
-those molecules even *mimic* our own ligands. / *(click)* So here is the open question: / what do the hundred-fold more
-microbial genes actually *do*? / The metabolites are mapped — the secreted *proteins* are almost entirely unread. *(0:26)*
+**[S3 · We coevolved — microbes already signal to us]**
+We coevolved with these microbes. / They already signal to us in *chemistry* — and some molecules even *mimic* our own ligands. / *(click)* So: what do the hundred-fold more microbial *genes* do? / The metabolites are mapped. The secreted *proteins* are not. *(0:19)*
 
 **[S4 · A billion smORFs, filtered to one candidate — PROTECT]**
-So we screened by structure. / From nearly a billion microbial small-ORFs / down through four filters — gut, secreted,
-high-quality, family-collapsed — / to two thousand candidate families. / We co-folded them against twenty-five human
-fold-targets: fifteen immune, cytokine and barrier receptors, / plus ten sequence-matched decoys — every hit has to beat
-a null. / And here is the turn: our first hit scored the *precursor*, not the secreted form. / A human caught
-it — / and with Claude Science we re-derived every mature peptide, refolded the whole shortlist in one session, and
-reranked it. / That correction surfaced our lead. *(0:34)*
+We screened by structure. / A billion microbial small-ORFs, four filters, down to two thousand families — / co-folded against fifteen human receptors and ten decoys. / The turn: our first hit scored the *precursor*, not the secreted form. / A human caught it; with Claude Science we re-derived every *mature* peptide, refolded the shortlist in one session, and reranked. / That surfaced our lead. *(0:27)*
 
-**[S5 · A gut peptide lands on the IL-7 binding site — PROTECT · staged structure]**
-The corrected lead, on **IL-7Rα**, the interleukin-7 receptor. / *(click)* the receptor and its SCID
-immune-deficiency residues. / *(click)* native IL-7 in its groove. / *(click)* and our peptide — same surface,
-sixty-five percent overlap. / One honest line: the claim is *co-location* with the functional interface, not
-enrichment. *(0:26)*
+**[S5 · A gut peptide lands on the IL-7 site — PROTECT · staged structure]**
+The lead sits on **IL-7Rα**. / *(click)* the SCID immune-deficiency residues / *(click)* native IL-7 / *(click)* and our peptide — same surface, sixty-five percent overlap. / Honestly: this is *co-location* with the functional interface, not enrichment. *(0:21)*
 
-**[S6 · It picks IL-7Rα out of its own receptor family — PROTECT]**
-And it is not a generic sticker. / We tested the hardest case — the five receptors most similar to IL-7Rα, its own
-γc family. / MIMIC scores point-nine-one on the real target / and point-two-eight or less on every paralog. / A second
-method, AlphaFold3, agrees independently. / Two engines, one answer: it picks IL-7Rα specifically. *(0:22)*
+**[S6 · It picks IL-7Rα out of its own family — PROTECT]**
+Not a generic sticker. / Against the five receptors most like IL-7Rα — its own γc family — / MIMIC scores point-nine-one on target, point-two-eight or less on every paralog. / AlphaFold3 agrees. Two engines, one answer. *(0:19)*
 
-**[S7 · The peptide rides a mobile element into a pathogen — PROTECT]**
-Then the neighborhood told a story. / This peptide is not fixed to one genome — it rides a conjugative element, /
-across two hundred thirty-nine gut species in two phyla. / Enrichment p = 0.003. / And the carriers include
-*Clostridioides difficile* — fifteen strains of a colitis pathogen. / The same mobile cassette bridges commensals and a
-pathogen. *(0:22)*
+**[S7 · It rides a mobile element into a pathogen — PROTECT]**
+And it's mobile. / The peptide rides a conjugative element across two hundred thirty-nine gut species — / enrichment p equals nought-point-nought-nought-three — / including fifteen strains of *Clostridioides difficile*, a colitis pathogen. *(0:20)*
 
-**[S8 · A shield you can trade between bugs — name MIMIC + testable — PROTECT]**
-So what is it *for*? / Our leading hypothesis — one of two — is a shield. / IL-7 keeps lymphocytes alive; a peptide that
-*blunted* it would dampen the immune response to whatever microbe wears it. / And on a mobile element, that shield can
-be *traded* — from a commensal into a pathogen like *C. difficile*. / We name it **MIMIC** — / **M**obile,
-**I**mmuno**M**odulatory, **I**CE-borne, **C**ommensal. / *(click)* And the direction is testable in a week: / add MIMIC
-with IL-7 to responsive T cells and read STAT5 — / suppressed, it is a shielding *antagonist*; firing alone, an
-*agonist*. / A hypothesis, not yet demonstrated function. *(0:31)*
+**[S8 · A shield you can trade — name MIMIC + testable — PROTECT]**
+Our leading hypothesis, one of two: a shield. / IL-7 keeps lymphocytes alive; muting it would dampen the immune response to whatever microbe carries the peptide — / a trait the mobile element can *trade*, commensal to pathogen. / We name it **MIMIC** — Mobile, ImmunoModulatory, ICE-borne, Commensal. / *(click)* Testable in a week: add MIMIC with IL-7, read STAT5 — / suppressed, it's a shielding *antagonist*; firing alone, an *agonist*. / A hypothesis, not yet function. *(0:28)*
 
-**[S9 · Close — single takeaway, no title]**
-MIMIC is one peptide. / But if commensals shield themselves by speaking to our immune receptors — / and trade that
-shield on mobile elements — / then the gut encodes a whole *library* of human-receptor ligands, / waiting in microbial
-genomes to be read. / Mobile, disease-linked, / almost entirely uncharted. *(0:19)*
+**[S9 · Close — single takeaway]**
+MIMIC is one peptide. / The gut may encode a whole *library* of human-receptor ligands — / waiting in microbial genomes to be read. *(0:12)*
 
-*(Backup — "Six independent lines of evidence, one candidate," lines A–F — leave up for Q&A; do not narrate. "Every
-panel is computational; none measures binding.")*
+*(Backup — "Six independent lines of evidence" — leave up for Q&A; do not narrate. "Every panel is computational; none measures binding.")*
 
 ---
-**Timing note (verified against this file):** all 9 spoken slides = **513 words ≈ 3:25** at 150 wpm. Cutting **S2**
-(flagged "cut to hit 3:00") → **482 words ≈ 3:13** at 150 wpm, or **≈3:00** at 160 wpm. To bank more room,
-tighten S4's filter list to "gut, secreted, high-quality" spoken once, or trim S8's acronym spell-out to a brisk
-"MIMIC — Mobile, ImmunoModulatory, ICE-borne, Commensal." Protect S4, S5, S6, S7, S8 — they carry the finding.
+**Timing (verified against this file):** 9 spoken slides = **318 words ≈ 2:07** of pure narration at 150 wpm — deliberately under-filled so the structure clicks (S5), the assay reveal (S8), and natural pauses land you near 3:00 without rushing. Dropping **S2** removes 20 words if you need buffer. Slow down rather than pad.
 
-**Number consistency:** the deck S4 shows **7,408 of 7,425** — 7,408 mature interfaces refolded, one family folded only
-partially. Say "seven thousand four hundred eight"; the "of 7,425" is printed on the slide, so no spoken reconcile is
-needed. Voice, slide, paper, and browser now agree.
+**Number consistency:** S4 shows **7,408 of 7,425** — 7,408 mature interfaces refolded, one family folded partially. Say "seven thousand four hundred eight." Voice, slide, paper, and browser agree.
 
-**Pronunciation:** *Clostridioides difficile* — "klos-TRID-ee-OY-deez dif-uh-SEEL." On S8, say the acronym letters with
-a half-beat so **I**mmuno + **M**odulatory reads as one word, not a stutter.
+**Pronunciation:** *Clostridioides difficile* — "klos-TRID-ee-OY-deez dif-uh-SEEL." On S8, give the acronym letters a half-beat so **I**mmuno + **M**odulatory reads as one word.
 
-**Animation cues:** S3 has one click (the open question). S5 has three clicks (SCID residues → native IL-7 → MIMIC).
-S8 has one click (the pSTAT5 test strip). S4 is static — the Claude turning-point is spoken, not shown as an on-slide
-box (kept out of the deck by design; the full trail lives in the paper). All other slides are static.
+**Animation cues:** S3 = 1 click (open question). S5 = 3 clicks (SCID residues → native IL-7 → MIMIC). S8 = 1 click (pSTAT5 test strip). All other slides static. The Claude turning-point is spoken on S4, not shown — the full trail lives in the paper.
