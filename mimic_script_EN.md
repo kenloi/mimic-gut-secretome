@@ -55,7 +55,7 @@ be *traded* — from a commensal into a pathogen like *C. difficile*. / We name 
 with IL-7 to responsive T cells and read STAT5 — / suppressed, it is a shielding *antagonist*; firing alone, an
 *agonist*. / A hypothesis, not yet demonstrated function. *(0:31)*
 
-**[S9 · This may be one ligand of many — close]**
+**[S9 · Close — single takeaway, no title]**
 MIMIC is one peptide. / But if commensals shield themselves by speaking to our immune receptors — / and trade that
 shield on mobile elements — / then the gut encodes a whole *library* of human-receptor ligands, / waiting in microbial
 genomes to be read. / Mobile, disease-linked, / almost entirely uncharted. *(0:19)*
